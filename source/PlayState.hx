@@ -16,6 +16,8 @@ class PlayState extends FlxState
 		var floor = new FlxSprite(0, 380);
 		floor.makeGraphic(FlxG.width, 100, 0xff098019);
 		add(floor);
+
+		add(new Player());
 	}
 
 	override public function update(elapsed:Float)

@@ -2,6 +2,7 @@ import flixel.FlxBasic;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.math.FlxPoint;
 
 class Player extends FlxTypedGroup<FlxBasic>
 {
@@ -27,7 +28,7 @@ class Player extends FlxTypedGroup<FlxBasic>
 	{
 		var star = stars.recycle(Star);
 		var midPoint = player.getMidpoint();
-		var angle = midPoint.degreesTo(FlxG.mouse.getPosition());
+		var angle = midPoint.degreesTo(FlxPoint.get(FlxG.width / 2, FlxG.mouse.y));
 		star.deploy(midPoint, throwForce, angle);
 
 		throwForce = 300;

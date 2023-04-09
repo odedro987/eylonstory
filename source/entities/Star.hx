@@ -5,6 +5,8 @@ import flixel.math.FlxPoint;
 
 class Star extends FlxSprite
 {
+	var airFrames:Float;
+
 	public function new(x:Float, y:Float)
 	{
 		super(x, y, AssetPaths.star_subi__png);
@@ -17,6 +19,11 @@ class Star extends FlxSprite
 		velocity.pivotDegrees(FlxPoint.get(0, 0), angle);
 	}
 
+	public function getAirFrames()
+	{
+		return airFrames;
+	}
+
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
@@ -24,5 +31,7 @@ class Star extends FlxSprite
 		velocity.y += 500 * elapsed;
 
 		angle += 600 * elapsed;
+
+		airFrames += 1;
 	}
 }

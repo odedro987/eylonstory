@@ -41,6 +41,11 @@ class Indicator extends FlxTypedGroup<FlxSprite>
 		return indicator.x;
 	}
 
+	public function getRepel()
+	{
+		return repel;
+	}
+
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);

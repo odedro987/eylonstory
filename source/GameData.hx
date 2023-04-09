@@ -11,6 +11,12 @@ typedef MobData =
 	var animations:Map<String, Array<Int>>;
 }
 
+typedef MapData =
+{
+	var killGoal:Int;
+	var possibleMobs:Array<String>;
+}
+
 class GameData
 {
 	public static var MOB_DATA:Map<String, MobData> = [
@@ -27,6 +33,13 @@ class GameData
 				"move" => [1, 2, 3, 4, 5, 4, 3, 2],
 				"die" => [6, 7, 8, 9, 10, 11, 12, 13, 14]
 			]
+		}
+	];
+
+	public static var MAP_DATA:Map<String, MapData> = [
+		"snail_hunting_ground_1" => {
+			killGoal: 10,
+			possibleMobs: ["green_snail"]
 		}
 	];
 }

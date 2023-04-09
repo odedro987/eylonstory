@@ -61,7 +61,5 @@ class Indicator extends FlxTypedGroup<FlxSprite>
 		}
 
 		repel = (indicator.x - start.x) / (end.x - start.x);
-
-		trace(repel);
 	}
 }

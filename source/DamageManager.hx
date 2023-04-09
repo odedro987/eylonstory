@@ -20,20 +20,23 @@ class DamageManager extends FlxTypedGroup<FlxBasic>
 	public function spawnDamage(x:Float, y:Float, damage:Int, isCrit:Bool)
 	{
 		var str = Std.string(damage);
-		var mid = str.length % 2 == 0 ? x - 39 : x;
+
 		var space = isCrit ? 30 : 20;
+		var damageLength = str.length * space;
+		var mid = x - damageLength / 2;
+
 		if (isCrit)
 		{
 			var crit = crits.recycle(DamageCrit);
 			crit.x = mid - space * Math.floor(str.length / 2) - 30;
-			crit.y = y - 20;
+			crit.y = y - 39 - 20;
 		}
 
 		for (i in 0...str.length)
 		{
 			var unit = damageUnits.recycle(DamageUnit);
 			unit.loadDamageGraphic(Std.parseInt(str.charAt(i)), isCrit);
-			unit.y = y + (i % 2) * 3;
+			unit.y = y - 39 + (i % 2) * 3;
 			if (i == 0)
 			{
 				unit.scale.set(1.25, 1.25);

@@ -58,11 +58,14 @@ class MapState extends FlxState
 
 		FlxG.overlap(player.stars, mobSpawner, (star:Star, mob:Mob) ->
 		{
-			star.kill();
-			var dmg = FlxG.random.int(1, 15);
-			var rnd = FlxG.random.float();
-			mob.dealDamage(dmg);
-			damageManager.spawnDamage(mob.x, mob.y, dmg + (rnd >= 0.8 ? 15 : 0), rnd >= 0.8);
+			if (!mob.isDying)
+			{
+				star.kill();
+				var rnd = FlxG.random.float();
+				var dmg = FlxG.random.int(1, 15) + (rnd >= 0.8 ? 15 : 0);
+				mob.dealDamage(dmg);
+				damageManager.spawnDamage(mob.x + mob.width / 2, mob.y, dmg, rnd >= 0.8);
+			}
 		});
 	}
 }

@@ -9,7 +9,7 @@ class Mob extends FlxSprite
 	var isHit:Bool;
 	var speed:Float;
 
-	var isDying:Bool;
+	public var isDying:Bool;
 
 	static inline var FLICH_TIME = 0.5;
 
@@ -48,8 +48,6 @@ class Mob extends FlxSprite
 
 	public function dealDamage(damage:Int)
 	{
-		if (isDying)
-			return;
 		health -= damage;
 		velocity.x = 0;
 		animation.play("hit");

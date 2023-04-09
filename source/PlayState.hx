@@ -10,6 +10,7 @@ class PlayState extends FlxState
 	var damageManager:DamageManager;
 	var player:Player;
 	var mobs:FlxTypedGroup<Mob>;
+	var indicator:Indicator;
 
 	override public function create()
 	{
@@ -34,17 +35,28 @@ class PlayState extends FlxState
 		add(mobs);
 
 		add(damageManager.damageUnits);
+
+		indicator = new Indicator();
+		add(indicator);
 	}
 
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
 
+		var sorted = mobs.members.filter(mob -> mob.alive);
+		sorted.sort((mob1, mob2) -> Std.int(mob1.x - mob2.x));
+
+		if (sorted.length > 0 && sorted[0].x < indicator.getX())
+		{
+			indicator.setFollow(sorted[0]);
+		}
+
 		FlxG.overlap(player.stars, mobs, (star:Star, mob:Mob) ->
 		{
 			star.kill();
-			mob.dealDamage(3);
-			damageManager.spawnDamage(mob.x, mob.y, 3);
+			mob.dealDamage(30);
+			damageManager.spawnDamage(mob.x, mob.y, 30);
 		});
 	}
 }

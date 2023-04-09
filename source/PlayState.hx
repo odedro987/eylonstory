@@ -34,7 +34,7 @@ class PlayState extends FlxState
 		mobs.add(new Mob(GameData.MOB_DATA["green_snail"]));
 		add(mobs);
 
-		add(damageManager.damageUnits);
+		add(damageManager);
 
 		indicator = new Indicator();
 		add(indicator);
@@ -56,7 +56,7 @@ class PlayState extends FlxState
 		{
 			star.kill();
 			mob.dealDamage(30);
-			damageManager.spawnDamage(mob.x, mob.y, 30);
+			damageManager.spawnDamage(mob.x, mob.y, 30, false);
 		});
 	}
 }

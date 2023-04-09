@@ -34,14 +34,23 @@ class GameData
 				"move" => [1, 2, 3, 4, 5, 4, 3, 2],
 				"die" => [6, 7, 8, 9, 10, 11, 12, 13, 14]
 			]
+		},
+		"blue_snail" => {
+			health: 15,
+			exp: 4,
+			speed: 20,
+			sprite: "assets/images/mobs/blue_snail.png",
+			width: 56,
+			height: 40,
+			animations: ["idle" => [0], "hit" => [8], "move" => [4, 5, 6, 7, 6, 5], "die" => [12, 13, 14]]
 		}
 	];
 
 	public static var MAP_DATA:Map<String, MapData> = [
 		"snail_hunting_ground_1" => {
 			killGoal: 10,
-			possibleMobs: ["green_snail"],
-			spawnRate: 1
+			possibleMobs: ["green_snail", "blue_snail"],
+			spawnRate: 3
 		}
 	];
 }

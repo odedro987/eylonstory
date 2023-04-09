@@ -13,7 +13,7 @@ class MobSpawner extends FlxTypedGroup<Mob>
 		super();
 		this.possibleMobs = possibleMobs;
 		this.spawnRate = spawnRate;
-		timer = 0;
+		timer = 5;
 	}
 
 	override function update(elapsed:Float)

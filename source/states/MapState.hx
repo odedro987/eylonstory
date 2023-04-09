@@ -89,7 +89,7 @@ class MapState extends FlxState
 				starsHit++;
 				var rnd = FlxG.random.float();
 				var dmg = FlxG.random.int(1, 15) + (rnd >= 0.8 ? 15 : 0);
-				var pain = Math.min(dmg, mob.health);
+				var damageScore = Math.min(dmg, mob.health);
 				var isDead = mob.dealDamage(dmg);
 				damageManager.spawnDamage(mob.x + mob.width / 2, mob.y, dmg, rnd >= 0.8);
 
@@ -98,8 +98,8 @@ class MapState extends FlxState
 					killCount++;
 				}
 
-				var multipoint = (mob.x + 300) / (300 - Math.min(star.getAirFrames(), 80));
-				score += Math.round((10 * multipoint) * pain);
+				var pointMultiplier = (mob.x + 300) / (300 - Math.min(star.getAirFrames(), 80));
+				score += Math.round((10 * pointMultiplier) * damageScore);
 			}
 		});
 

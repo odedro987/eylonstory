@@ -48,6 +48,8 @@ class Mob extends FlxSprite
 
 	public function dealDamage(damage:Int)
 	{
+		if (isDying)
+			return;
 		health -= damage;
 		velocity.x = 0;
 		animation.play("hit");

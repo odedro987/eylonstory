@@ -10,6 +10,7 @@ class PlayState extends FlxState
 	{
 		super.create();
 
+		FlxG.mouse.load(AssetPaths.cursor__png);
 		var bg = new FlxSprite(0, 0);
 		bg.makeGraphic(FlxG.width, FlxG.height, 0xff148dd3);
 		add(bg);

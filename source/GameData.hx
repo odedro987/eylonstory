@@ -15,6 +15,7 @@ typedef MapData =
 {
 	var killGoal:Int;
 	var possibleMobs:Array<String>;
+	var spawnRate:Float;
 }
 
 class GameData
@@ -39,7 +40,8 @@ class GameData
 	public static var MAP_DATA:Map<String, MapData> = [
 		"snail_hunting_ground_1" => {
 			killGoal: 10,
-			possibleMobs: ["green_snail"]
+			possibleMobs: ["green_snail"],
+			spawnRate: 1
 		}
 	];
 }

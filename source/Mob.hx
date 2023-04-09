@@ -15,7 +15,11 @@ class Mob extends FlxSprite
 
 	public function new(data:MobData)
 	{
-		super(FlxG.width - 50, 380 - 33);
+		super();
+	}
+
+	public function loadData(data:MobData)
+	{
 		loadGraphic(data.sprite, true, data.width, data.height);
 		animation.add("idle", data.animations["idle"], 6);
 		animation.add("move", data.animations["move"], 6);

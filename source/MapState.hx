@@ -6,20 +6,17 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 
 class MapState extends FlxState
 {
-	var killGoal:Float;
-	var possibleMobs:Array<String>;
+	var mapData:MapData;
 
 	var damageManager:DamageManager;
 	var player:Player;
-	var mobs:FlxTypedGroup<Mob>;
+	var mobSpawner:MobSpawner;
 	var indicator:Indicator;
 
 	public function new(data:MapData)
 	{
 		super();
-		trace(data);
-		killGoal = data.killGoal;
-		possibleMobs = data.possibleMobs;
+		mapData = data;
 	}
 
 	override public function create()
@@ -38,9 +35,8 @@ class MapState extends FlxState
 		player = new Player();
 		add(player);
 
-		mobs = new FlxTypedGroup<Mob>();
-		mobs.add(new Mob(GameData.MOB_DATA[possibleMobs[FlxG.random.int(0, possibleMobs.length - 1)]]));
-		add(mobs);
+		mobSpawner = new MobSpawner(mapData.possibleMobs, mapData.spawnRate);
+		add(mobSpawner);
 
 		add(damageManager);
 
@@ -52,7 +48,7 @@ class MapState extends FlxState
 	{
 		super.update(elapsed);
 
-		var sorted = mobs.members.filter(mob -> mob.alive);
+		var sorted = mobSpawner.members.filter(mob -> mob.alive);
 		sorted.sort((mob1, mob2) -> Std.int(mob1.x - mob2.x));
 
 		if (sorted.length > 0 && sorted[0].x < indicator.getX())
@@ -60,7 +56,7 @@ class MapState extends FlxState
 			indicator.setFollow(sorted[0]);
 		}
 
-		FlxG.overlap(player.stars, mobs, (star:Star, mob:Mob) ->
+		FlxG.overlap(player.stars, mobSpawner, (star:Star, mob:Mob) ->
 		{
 			star.kill();
 			mob.dealDamage(30);

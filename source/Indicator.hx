@@ -12,7 +12,7 @@ class Indicator extends FlxTypedGroup<FlxSprite>
 
 	var follow:Mob;
 
-	public function new(width:Int = 600)
+	public function new(width:Int = 500)
 	{
 		super();
 

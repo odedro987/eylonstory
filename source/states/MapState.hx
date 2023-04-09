@@ -1,8 +1,16 @@
+package states;
+
 import GameData.MapData;
+import entities.Mob;
+import entities.MobSpawner;
+import entities.Player;
+import entities.Star;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.group.FlxGroup.FlxTypedGroup;
+import ui.DamageManager;
+import ui.Indicator;
 
 class MapState extends FlxState
 {

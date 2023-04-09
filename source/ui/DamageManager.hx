@@ -1,3 +1,5 @@
+package ui;
+
 import flixel.FlxBasic;
 import flixel.FlxG;
 import flixel.FlxSprite;

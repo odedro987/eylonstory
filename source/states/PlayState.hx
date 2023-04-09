@@ -1,9 +1,8 @@
-package;
+package states;
 
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
-import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.ui.FlxButton;
 
 class PlayState extends FlxState

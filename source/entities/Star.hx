@@ -1,3 +1,5 @@
+package entities;
+
 import flixel.FlxSprite;
 import flixel.math.FlxPoint;
 

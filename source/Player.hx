@@ -29,7 +29,7 @@ class Player extends FlxTypedGroup<FlxBasic>
 	{
 		var star = stars.recycle(Star);
 		var midPoint = player.getMidpoint();
-		var angle = midPoint.degreesTo(FlxPoint.get(FlxG.width / 2, FlxG.mouse.y));
+		var angle = midPoint.degreesTo(FlxG.mouse.getPosition());
 		star.deploy(midPoint, throwForce, angle);
 
 		throwForce = 300;

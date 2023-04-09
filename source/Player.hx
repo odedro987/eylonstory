@@ -6,8 +6,9 @@ import flixel.math.FlxPoint;
 
 class Player extends FlxTypedGroup<FlxBasic>
 {
+	public var stars:FlxTypedGroup<Star>;
+
 	var player:FlxSprite;
-	var stars:FlxTypedGroup<Star>;
 
 	var throwForce:Float;
 

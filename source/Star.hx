@@ -20,5 +20,7 @@ class Star extends FlxSprite
 		super.update(elapsed);
 
 		velocity.y += 500 * elapsed;
+
+		angle += 600 * elapsed;
 	}
 }

@@ -6,6 +6,7 @@ import flixel.FlxState;
 
 class PlayState extends FlxState
 {
+	var player:Player;
 	override public function create()
 	{
 		super.create();
@@ -18,7 +19,8 @@ class PlayState extends FlxState
 		floor.makeGraphic(FlxG.width, 100, 0xff098019);
 		add(floor);
 
-		add(new Player());
+		player = new Player();
+		add(player);
 	}
 
 	override public function update(elapsed:Float)

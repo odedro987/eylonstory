@@ -7,12 +7,15 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 
 class PlayState extends FlxState
 {
+	var damageManager:DamageManager;
 	var player:Player;
 	var mobs:FlxTypedGroup<Mob>;
 
 	override public function create()
 	{
 		super.create();
+
+		damageManager = new DamageManager();
 
 		FlxG.mouse.load(AssetPaths.cursor__png);
 
@@ -29,6 +32,8 @@ class PlayState extends FlxState
 		mobs = new FlxTypedGroup<Mob>();
 		mobs.add(new Mob(GameData.MOB_DATA["green_snail"]));
 		add(mobs);
+
+		add(damageManager.damageUnits);
 	}
 
 	override public function update(elapsed:Float)
@@ -39,6 +44,7 @@ class PlayState extends FlxState
 		{
 			star.kill();
 			mob.dealDamage(3);
+			damageManager.spawnDamage(mob.x, mob.y, 3);
 		});
 	}
 }

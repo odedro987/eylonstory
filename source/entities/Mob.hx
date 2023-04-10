@@ -13,8 +13,6 @@ class Mob extends FlxSprite
 
 	public var isDying:Bool;
 
-	static inline var FLICH_TIME = 0.5;
-
 	public function new(data:MobData)
 	{
 		super();
@@ -71,7 +69,7 @@ class Mob extends FlxSprite
 			hitTimer += elapsed;
 		}
 
-		if (hitTimer >= FLICH_TIME)
+		if (hitTimer >= Globals.FLICH_TIME)
 		{
 			hitTimer = 0;
 			isHit = false;

@@ -14,8 +14,6 @@ class Player extends FlxTypedGroup<FlxBasic>
 
 	var throwForce:Float;
 
-	static inline var MAX_FORCE = 600;
-
 	public function new()
 	{
 		super(2);
@@ -43,11 +41,11 @@ class Player extends FlxTypedGroup<FlxBasic>
 	{
 		super.update(elapsed);
 
-		if (FlxG.mouse.pressed && throwForce < MAX_FORCE)
+		if (FlxG.mouse.pressed && throwForce < Globals.MAX_FORCE)
 		{
 			throwForce += 300 * elapsed;
-			if (throwForce > MAX_FORCE)
-				throwForce = MAX_FORCE;
+			if (throwForce > Globals.MAX_FORCE)
+				throwForce = Globals.MAX_FORCE;
 		}
 
 		if (FlxG.mouse.justReleased)

@@ -10,6 +10,7 @@ import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.text.FlxText;
 import ui.DamageManager;
+import ui.ExpBar;
 import ui.Indicator;
 
 class MapState extends FlxState
@@ -25,6 +26,7 @@ class MapState extends FlxState
 	var mobSpawner:MobSpawner;
 	var indicator:Indicator;
 	var floor:FlxSprite;
+	var expBar:ExpBar;
 
 	var missionScoreText:FlxText;
 	var killCountText:FlxText;
@@ -52,7 +54,12 @@ class MapState extends FlxState
 		floor.makeGraphic(FlxG.width, 100, 0xff098019);
 		add(floor);
 
-		player = new Player();
+		player = new Player({
+			level: 1,
+			maxMp: 10,
+			currentExp: 0,
+			expGoal: Formulae.calculateExpGoal(2)
+		});
 		add(player);
 
 		mobSpawner = new MobSpawner(mapData.possibleMobs, mapData.spawnRate);
@@ -67,6 +74,9 @@ class MapState extends FlxState
 		add(missionScoreText);
 		killCountText = new FlxText(20, 80, 100, "Mobs left: " + mapData.killGoal, 10);
 		add(killCountText);
+
+		expBar = new ExpBar(0, 0, 500, 20, player.playerInfo.expGoal, 5);
+		add(expBar);
 	}
 
 	override public function update(elapsed:Float)
@@ -104,6 +114,9 @@ class MapState extends FlxState
 				{
 					killCount++;
 					killCountText.text = "Mobs left: " + (mapData.killGoal - killCount);
+					player.addExp(mob.exp);
+					expBar.updateMax(player.playerInfo.expGoal);
+					expBar.updateValue(player.playerInfo.currentExp);
 				}
 
 				var pointMultiplier = (mob.x + 350) / (350 - Math.min(star.getAirFrames(), 90));

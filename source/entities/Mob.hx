@@ -6,14 +6,15 @@ import flixel.FlxSprite;
 
 class Mob extends FlxSprite
 {
-	var exp:Int;
+	public var exp:Int;
+
 	var hitTimer:Float;
 	var isHit:Bool;
 	var speed:Float;
 
 	public var isDying:Bool;
 
-	public function new(data:MobData)
+	public function new()
 	{
 		super();
 	}

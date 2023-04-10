@@ -4,17 +4,25 @@ import flixel.FlxBasic;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup.FlxTypedGroup;
-import flixel.math.FlxPoint;
+
+typedef PlayerInfo =
+{
+	var level:Int;
+	var currentExp:Int;
+	var expGoal:Int;
+	var maxMp:Int;
+}
 
 class Player extends FlxTypedGroup<FlxBasic>
 {
 	public var stars:FlxTypedGroup<Star>;
+	public var playerInfo:PlayerInfo;
 
 	var player:FlxSprite;
 
 	var throwForce:Float;
 
-	public function new()
+	public function new(data:PlayerInfo)
 	{
 		super(2);
 		player = new FlxSprite(30, 310);
@@ -24,6 +32,7 @@ class Player extends FlxTypedGroup<FlxBasic>
 		stars = new FlxTypedGroup<Star>();
 		add(stars);
 
+		playerInfo = data;
 		throwForce = 300;
 	}
 
@@ -35,6 +44,17 @@ class Player extends FlxTypedGroup<FlxBasic>
 		star.deploy(midPoint, throwForce, angle);
 
 		throwForce = 300;
+	}
+
+	public function addExp(amount:Int)
+	{
+		playerInfo.currentExp += amount;
+		if (playerInfo.currentExp >= playerInfo.expGoal)
+		{
+			playerInfo.currentExp -= playerInfo.expGoal;
+			playerInfo.level++;
+			playerInfo.expGoal = Formulae.calculateExpGoal(playerInfo.level + 1);
+		}
 	}
 
 	override function update(elapsed:Float)

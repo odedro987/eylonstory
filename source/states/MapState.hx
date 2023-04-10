@@ -69,8 +69,7 @@ class MapState extends FlxState
 		{
 			var accuracy = Math.round((starsHit / (starsMissed + starsHit)) * 100 * 100) / 100;
 			var repel = Math.round(indicator.getRepel() * 100 * 100) / 100;
-			var points = Math.round(((score * accuracy) * repel) * 0.001);
-			FlxG.switchState(new GameOverState(points, accuracy, repel));
+			FlxG.switchState(new GameOverState(score, accuracy, repel));
 		}
 
 		var sorted = mobSpawner.members.filter(mob -> mob.alive);
@@ -98,7 +97,7 @@ class MapState extends FlxState
 					killCount++;
 				}
 
-				var pointMultiplier = (mob.x + 300) / (300 - Math.min(star.getAirFrames(), 80));
+				var pointMultiplier = (mob.x + 400) / (400 - Math.min(star.getAirFrames(), 100));
 				score += Math.round((10 * pointMultiplier) * damageScore);
 			}
 		});

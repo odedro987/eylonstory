@@ -8,6 +8,7 @@ import entities.Star;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
+import flixel.text.FlxBitmapText;
 import flixel.text.FlxText;
 import ui.DamageManager;
 import ui.ExpBar;
@@ -28,8 +29,8 @@ class MapState extends FlxState
 	var floor:FlxSprite;
 	var expBar:ExpBar;
 
-	var missionScoreText:FlxText;
-	var killCountText:FlxText;
+	var missionScoreText:FlxBitmapText;
+	var killCountText:FlxBitmapText;
 
 	public function new(data:MapData)
 	{
@@ -44,8 +45,6 @@ class MapState extends FlxState
 	override public function create()
 	{
 		super.create();
-
-		damageManager = new DamageManager();
 
 		var bg = new FlxSprite(0, 0);
 		bg.makeGraphic(FlxG.width, FlxG.height, 0xff148dd3);
@@ -65,14 +64,15 @@ class MapState extends FlxState
 		mobSpawner = new MobSpawner(mapData.possibleMobs, mapData.spawnRate);
 		add(mobSpawner);
 
+		damageManager = new DamageManager();
 		add(damageManager);
 
 		indicator = new Indicator();
 		add(indicator);
 
-		missionScoreText = new FlxText(20, 60, 100, "Score: 0", 10);
+		missionScoreText = Globals.createBitmapText(30, 30, "Score: 0", 1.25, false);
 		add(missionScoreText);
-		killCountText = new FlxText(20, 80, 100, "Mobs left: " + mapData.killGoal, 10);
+		killCountText = Globals.createBitmapText(30, 40, "Mobs left: " + mapData.killGoal, 1.25, false);
 		add(killCountText);
 
 		expBar = new ExpBar(0, 0, 500, 20, player.playerInfo.expGoal, 5);

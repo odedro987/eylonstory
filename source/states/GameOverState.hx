@@ -24,9 +24,9 @@ class GameOverState extends FlxState
 	{
 		super.create();
 
-		add(new FlxText(FlxG.width / 2, FlxG.height / 2, 300, "Score: " + score, 16));
-		add(new FlxText(FlxG.width / 2, FlxG.height / 2 + 30, 300, "Accuracy: " + accuracy + "%", 16));
-		add(new FlxText(FlxG.width / 2, FlxG.height / 2 + 60, 300, "Repel: " + repel + "%", 16));
-		add(new FlxText(FlxG.width / 2, FlxG.height / 2 + 90, 300, "Total: " + points, 16));
+		add(Globals.createBitmapText(FlxG.width / 2, FlxG.height / 2, "Score: " + score, 2));
+		add(Globals.createBitmapText(FlxG.width / 2, FlxG.height / 2 + 20, "Accuracy: " + accuracy + "%", 2));
+		add(Globals.createBitmapText(FlxG.width / 2, FlxG.height / 2 + 40, "Repel: " + repel + "%", 2));
+		add(Globals.createBitmapText(FlxG.width / 2, FlxG.height / 2 + 60, "Total: " + points, 2));
 	}
 }

@@ -3,12 +3,12 @@ package ui;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.system.FlxAssets.FlxShader;
-import flixel.text.FlxText;
+import flixel.text.FlxBitmapText;
 
 class ExpBar extends FlxTypedGroup<FlxSprite>
 {
 	var bar:FlxSprite;
-	var text:FlxText;
+	var text:FlxBitmapText;
 	var expShader:ExpBarShader;
 	var max:Float;
 	var value:Float;
@@ -25,8 +25,7 @@ class ExpBar extends FlxTypedGroup<FlxSprite>
 		bar.shader = expShader;
 		add(bar);
 
-		text = new FlxText(x + width / 2 - 50, y + height / 2 - 8, 100, value + " / " + max);
-		text.alignment = CENTER;
+		text = Globals.createBitmapText(x + width / 2 - 25, y + height / 2 - 2, value + " / " + max, 1.25);
 		add(text);
 	}
 

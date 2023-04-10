@@ -8,7 +8,7 @@ import entities.Star;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
-import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.text.FlxText;
 import ui.DamageManager;
 import ui.Indicator;
 
@@ -25,6 +25,9 @@ class MapState extends FlxState
 	var mobSpawner:MobSpawner;
 	var indicator:Indicator;
 	var floor:FlxSprite;
+
+	var missionScoreText:FlxText;
+	var killCountText:FlxText;
 
 	public function new(data:MapData)
 	{
@@ -59,6 +62,11 @@ class MapState extends FlxState
 
 		indicator = new Indicator();
 		add(indicator);
+
+		missionScoreText = new FlxText(20, 60, 100, "Score: 0", 10);
+		add(missionScoreText);
+		killCountText = new FlxText(20, 80, 100, "Mobs left: " + mapData.killGoal, 10);
+		add(killCountText);
 	}
 
 	override public function update(elapsed:Float)
@@ -95,10 +103,12 @@ class MapState extends FlxState
 				if (isDead)
 				{
 					killCount++;
+					killCountText.text = "Mobs left: " + (mapData.killGoal - killCount);
 				}
 
-				var pointMultiplier = (mob.x + 400) / (400 - Math.min(star.getAirFrames(), 100));
+				var pointMultiplier = (mob.x + 350) / (350 - Math.min(star.getAirFrames(), 90));
 				score += Math.round((10 * pointMultiplier) * damageScore);
+				missionScoreText.text = "Score: " + score;
 			}
 		});
 

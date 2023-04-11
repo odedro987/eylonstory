@@ -85,17 +85,22 @@ class MapState extends FlxState
 		add(powerText);
 	}
 
+	function endLevel()
+	{
+		var accuracy = Math.round((starsHit / (starsMissed + starsHit)) * 100 * 100) / 100;
+		var repel = Math.max(Math.round(indicator.getRepel() * 100 * 100) / 100, 0);
+		FlxG.switchState(new GameOverState(score, accuracy, repel));
+	}
+
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
 
 		powerText.text = "Power: " + (Math.round(((player.throwForce - Globals.MIN_FORCE) / (Globals.MAX_FORCE - Globals.MIN_FORCE)) * 100 * 10) / 10);
 
-		if (killCount >= mapData.killGoal)
+		if (killCount >= mapData.killGoal || indicator.getX() <= indicator.getStartX())
 		{
-			var accuracy = Math.round((starsHit / (starsMissed + starsHit)) * 100 * 100) / 100;
-			var repel = Math.round(indicator.getRepel() * 100 * 100) / 100;
-			FlxG.switchState(new GameOverState(score, accuracy, repel));
+			endLevel();
 		}
 
 		var sorted = mobSpawner.members.filter(mob -> mob.alive);

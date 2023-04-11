@@ -36,6 +36,11 @@ class Indicator extends FlxTypedGroup<FlxSprite>
 		isDragged = true;
 	}
 
+	public function getStartX()
+	{
+		return start.x;
+	}
+
 	public function getX()
 	{
 		return indicator.x;

@@ -13,7 +13,7 @@ class PlayState extends FlxState
 
 		FlxG.mouse.load(AssetPaths.cursor__png);
 
-		var btn = new FlxButton(100, 100, "start", () -> FlxG.switchState(new MapState(GameData.MAP_DATA["snail_hunting_ground_1"])));
+		var btn = new FlxButton(100, 100, "start", () -> FlxG.switchState(new MapState(GameData.MAP_DATA["green_snails_only"])));
 		add(btn);
 	}
 }

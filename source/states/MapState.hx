@@ -89,7 +89,7 @@ class MapState extends FlxState
 	{
 		var accuracy = Math.round((starsHit / (starsMissed + starsHit)) * 100 * 100) / 100;
 		var repel = Math.max(Math.round(indicator.getRepel() * 100 * 100) / 100, 0);
-		FlxG.switchState(new GameOverState(score, accuracy, repel));
+		FlxG.switchState(new GameOverState(score, accuracy, repel, mapData.sRankReq));
 	}
 
 	override public function update(elapsed:Float)

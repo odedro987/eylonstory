@@ -8,7 +8,8 @@ class Globals
 	public static inline var FLICH_TIME = 0.5;
 
 	// Player vars
-	public static inline var MAX_FORCE = 600;
+	public static inline var MAX_FORCE = 700;
+	public static inline var MIN_FORCE = 200;
 
 	// Font
 	public static var fontXNA:FlxBitmapFont;

@@ -31,6 +31,7 @@ class MapState extends FlxState
 
 	var missionScoreText:FlxBitmapText;
 	var killCountText:FlxBitmapText;
+	var powerText:FlxBitmapText;
 
 	public function new(data:MapData)
 	{
@@ -74,6 +75,8 @@ class MapState extends FlxState
 		add(missionScoreText);
 		killCountText = Globals.createBitmapText(30, 40, "Mobs left: " + mapData.killGoal, 1.25, false);
 		add(killCountText);
+		powerText = Globals.createBitmapText(30, 50, "Power: 0%", 1.25, false);
+		add(powerText);
 
 		expBar = new ExpBar(0, 0, 500, 20, player.playerInfo.expGoal, 5);
 		add(expBar);
@@ -82,6 +85,8 @@ class MapState extends FlxState
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
+		powerText.text = "Power: " + (Math.round(((player.throwForce - Globals.MIN_FORCE) / (Globals.MAX_FORCE - Globals.MIN_FORCE)) * 100 * 10) / 10);
 
 		if (killCount >= mapData.killGoal)
 		{

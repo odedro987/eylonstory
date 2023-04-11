@@ -18,9 +18,10 @@ class Player extends FlxTypedGroup<FlxBasic>
 	public var stars:FlxTypedGroup<Star>;
 	public var playerInfo:PlayerInfo;
 
-	var player:FlxSprite;
+	public var throwForce:Float;
+	public var chargeSpeed:Float;
 
-	var throwForce:Float;
+	var player:FlxSprite;
 
 	public function new(data:PlayerInfo)
 	{
@@ -33,7 +34,8 @@ class Player extends FlxTypedGroup<FlxBasic>
 		add(stars);
 
 		playerInfo = data;
-		throwForce = 300;
+		throwForce = Globals.MIN_FORCE;
+		chargeSpeed = 300;
 	}
 
 	function throwStar()
@@ -43,7 +45,7 @@ class Player extends FlxTypedGroup<FlxBasic>
 		var angle = midPoint.degreesTo(FlxG.mouse.getPosition());
 		star.deploy(midPoint, throwForce, angle);
 
-		throwForce = 300;
+		throwForce = Globals.MIN_FORCE;
 	}
 
 	public function addExp(amount:Int)
@@ -63,7 +65,7 @@ class Player extends FlxTypedGroup<FlxBasic>
 
 		if (FlxG.mouse.pressed && throwForce < Globals.MAX_FORCE)
 		{
-			throwForce += 300 * elapsed;
+			throwForce += chargeSpeed * elapsed;
 			if (throwForce > Globals.MAX_FORCE)
 				throwForce = Globals.MAX_FORCE;
 		}

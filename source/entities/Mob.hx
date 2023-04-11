@@ -6,7 +6,7 @@ import flixel.FlxSprite;
 
 class Mob extends FlxSprite
 {
-	public var exp:Int;
+	public var mobData:MobData;
 
 	var hitTimer:Float;
 	var isHit:Bool;
@@ -21,6 +21,8 @@ class Mob extends FlxSprite
 
 	public function loadData(data:MobData)
 	{
+		mobData = data;
+
 		loadGraphic(data.sprite, true, data.width, data.height);
 		animation.add("idle", data.animations["idle"], 6);
 		animation.add("move", data.animations["move"], 6);
@@ -37,7 +39,6 @@ class Mob extends FlxSprite
 
 		animation.play("move");
 
-		exp = data.exp;
 		health = data.health;
 		speed = data.speed;
 		velocity.x = -speed;
@@ -50,10 +51,13 @@ class Mob extends FlxSprite
 	public function dealDamage(damage:Int)
 	{
 		health -= damage;
-		velocity.x = 0;
-		animation.play("hit");
-		x += 3;
-		isHit = true;
+		if (damage >= mobData.knockbackThreshold)
+		{
+			velocity.x = 0;
+			animation.play("hit");
+			x += 3;
+			isHit = true;
+		}
 
 		return health < 0;
 	}

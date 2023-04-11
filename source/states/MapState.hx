@@ -128,7 +128,7 @@ class MapState extends FlxState
 				{
 					killCount++;
 					killCountText.text = "Mobs left: " + (mapData.killGoal - killCount);
-					player.addExp(mob.exp);
+					player.addExp(mob.mobData.exp);
 					levelText.text = "Lvl: " + player.playerInfo.level;
 					expBar.updateMax(player.playerInfo.expGoal);
 					expBar.updateValue(player.playerInfo.currentExp);

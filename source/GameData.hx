@@ -8,6 +8,7 @@ typedef MobData =
 	var sprite:String;
 	var width:Int;
 	var height:Int;
+	var knockbackThreshold:Int;
 	var animations:Map<String, Array<Int>>;
 }
 
@@ -28,6 +29,7 @@ class GameData
 			sprite: "assets/images/mobs/snail.png",
 			width: 44,
 			height: 33,
+			knockbackThreshold: 1,
 			animations: [
 				"idle" => [0],
 				"hit" => [6],
@@ -42,6 +44,7 @@ class GameData
 			sprite: "assets/images/mobs/blue_snail.png",
 			width: 56,
 			height: 40,
+			knockbackThreshold: 1,
 			animations: ["idle" => [0], "hit" => [8], "move" => [4, 5, 6, 7, 6, 5], "die" => [12, 13, 14]]
 		}
 	];

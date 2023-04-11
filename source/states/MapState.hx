@@ -29,6 +29,7 @@ class MapState extends FlxState
 	var floor:FlxSprite;
 	var expBar:ExpBar;
 
+	var levelText:FlxBitmapText;
 	var missionScoreText:FlxBitmapText;
 	var killCountText:FlxBitmapText;
 	var powerText:FlxBitmapText;
@@ -71,15 +72,17 @@ class MapState extends FlxState
 		indicator = new Indicator();
 		add(indicator);
 
+		expBar = new ExpBar(0, 0, 500, 20, player.playerInfo.expGoal, 5);
+		add(expBar);
+
+		levelText = Globals.createBitmapText(30, 7, "Lvl: " + player.playerInfo.level, 1.25, false);
+		add(levelText);
 		missionScoreText = Globals.createBitmapText(30, 30, "Score: 0", 1.25, false);
 		add(missionScoreText);
 		killCountText = Globals.createBitmapText(30, 40, "Mobs left: " + mapData.killGoal, 1.25, false);
 		add(killCountText);
 		powerText = Globals.createBitmapText(30, 50, "Power: 0%", 1.25, false);
 		add(powerText);
-
-		expBar = new ExpBar(0, 0, 500, 20, player.playerInfo.expGoal, 5);
-		add(expBar);
 	}
 
 	override public function update(elapsed:Float)
@@ -120,6 +123,7 @@ class MapState extends FlxState
 					killCount++;
 					killCountText.text = "Mobs left: " + (mapData.killGoal - killCount);
 					player.addExp(mob.exp);
+					levelText.text = "Lvl: " + player.playerInfo.level;
 					expBar.updateMax(player.playerInfo.expGoal);
 					expBar.updateValue(player.playerInfo.currentExp);
 				}

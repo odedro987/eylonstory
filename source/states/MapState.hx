@@ -113,8 +113,9 @@ class MapState extends FlxState
 
 		FlxG.overlap(player.stars, mobSpawner, (star:Star, mob:Mob) ->
 		{
-			if (!mob.isDying)
+			if (!star.getIsConsumed() && !mob.isDying)
 			{
+				star.setIsConsumed(true);
 				star.kill();
 				starsHit++;
 				var rnd = FlxG.random.float();

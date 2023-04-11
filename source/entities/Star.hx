@@ -6,6 +6,7 @@ import flixel.math.FlxPoint;
 class Star extends FlxSprite
 {
 	var airFrames:Float;
+	var isConsumed:Bool;
 
 	public function new(x:Float, y:Float)
 	{
@@ -17,6 +18,17 @@ class Star extends FlxSprite
 		setPosition(pos.x, pos.y);
 		velocity.set(force, 0);
 		velocity.pivotDegrees(FlxPoint.get(0, 0), angle);
+		isConsumed = false;
+	}
+
+	public function setIsConsumed(flag:Bool)
+	{
+		isConsumed = flag;
+	}
+
+	public function getIsConsumed()
+	{
+		return isConsumed;
 	}
 
 	public function getAirFrames()

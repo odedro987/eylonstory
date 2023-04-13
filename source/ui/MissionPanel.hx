@@ -4,7 +4,7 @@ import GameData.MissionRank;
 import flixel.FlxBasic;
 import flixel.FlxG;
 import flixel.group.FlxGroup.FlxTypedGroup;
-import ui.MissionBanner.MissionState;
+import ui.MissionBanner.MissionBannerState;
 
 class MissionPanel extends FlxTypedGroup<FlxBasic>
 {
@@ -22,14 +22,32 @@ class MissionPanel extends FlxTypedGroup<FlxBasic>
 		lastPage = 0;
 
 		missions = new FlxTypedGroup();
-		for (i in 0...GameData.MAP_DATA.length)
+		for (i in 0...GameData.MISSION_DATA.length)
 		{
-			var mission = new MissionBanner(x - 280, y + 90 * (i % 4), i,
-				GameData.MAP_DATA[i].gpReq < 30 ? MissionState.FAIL : GameData.MAP_DATA[i].gpReq < 55 ? MissionState.NEW : MissionState.LOCKED);
-			if (GameData.MAP_DATA[i].gpReq < 20)
+			var highscore = -1;
+			var missionState = MissionBannerState.NEW;
+			if (GameData.MISSION_DATA[i].gpReq > GameStorage.store.playerGP)
 			{
-				mission.setClear(MissionRank.S, 100000000);
+				missionState = MissionBannerState.LOCKED;
 			}
+			else if (GameStorage.store.missionRecords[i].attempts > 0)
+			{
+				if (GameStorage.store.missionRecords[i].highscore == 0)
+				{
+					missionState = MissionBannerState.FAIL;
+				}
+				else
+				{
+					highscore = GameStorage.store.missionRecords[i].highscore;
+				}
+			}
+
+			var mission = new MissionBanner(x - 280, y + 90 * (i % 4), i, missionState);
+			if (highscore > 0)
+			{
+				mission.setClear(Formulae.calculateMissionRank(highscore, GameData.MISSION_DATA[i].sRankReq), highscore);
+			}
+			if (GameData.MISSION_DATA[i].gpReq < 20) {}
 			mission.exists = false;
 			missions.add(mission);
 		}

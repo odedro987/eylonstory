@@ -5,9 +5,9 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxBitmapText;
-import states.MapState;
+import states.MissionState;
 
-enum abstract MissionState(Int)
+enum abstract MissionBannerState(Int)
 {
 	var LOCKED;
 	var NEW;
@@ -17,7 +17,7 @@ enum abstract MissionState(Int)
 
 class MissionBanner extends FlxTypedGroup<FlxSprite>
 {
-	var state:MissionState;
+	var state:MissionBannerState;
 	var missionIndex:Int;
 
 	var banner:FlxSprite;
@@ -25,7 +25,7 @@ class MissionBanner extends FlxTypedGroup<FlxSprite>
 	var name:FlxBitmapText;
 	var infoText:FlxBitmapText;
 
-	public function new(x:Float, y:Float, missionIndex:Int, state:MissionState = MissionState.LOCKED)
+	public function new(x:Float, y:Float, missionIndex:Int, state:MissionBannerState = MissionBannerState.LOCKED)
 	{
 		super(4);
 
@@ -37,7 +37,7 @@ class MissionBanner extends FlxTypedGroup<FlxSprite>
 		banner.animation.frameIndex = cast(state, Int);
 		add(banner);
 
-		var missionName = GameData.MAP_DATA[missionIndex].name;
+		var missionName = GameData.MISSION_DATA[missionIndex].name;
 		var isLong = missionName.length <= 18;
 		name = Globals.createBitmapText(x + (isLong ? 110 : 60), y + 15, missionName, isLong ? 2 : 1.5, false);
 		add(name);
@@ -47,16 +47,16 @@ class MissionBanner extends FlxTypedGroup<FlxSprite>
 		add(rankMedal);
 
 		infoText = Globals.createBitmapText(x + 60, y + 60, "", 1.5, false);
-		if (state == MissionState.LOCKED)
+		if (state == MissionBannerState.LOCKED)
 		{
-			infoText.text = "Required GP: " + GameData.MAP_DATA[missionIndex].gpReq;
+			infoText.text = "Required GP: " + GameData.MISSION_DATA[missionIndex].gpReq;
 		}
 		add(infoText);
 	}
 
 	public function setClear(rank:MissionRank, points:Int)
 	{
-		banner.animation.frameIndex = cast(MissionState.CLEAR, Int);
+		banner.animation.frameIndex = cast(MissionBannerState.CLEAR, Int);
 		rankMedal.updateRank(rank);
 		rankMedal.revive();
 		infoText.text = "Best Score: " + points;
@@ -66,9 +66,9 @@ class MissionBanner extends FlxTypedGroup<FlxSprite>
 	{
 		super.update(elapsed);
 
-		if (state != MissionState.LOCKED && FlxG.mouse.justPressed && FlxG.mouse.overlaps(banner))
+		if (state != MissionBannerState.LOCKED && FlxG.mouse.justPressed && FlxG.mouse.overlaps(banner))
 		{
-			FlxG.switchState(new MapState(GameData.MAP_DATA[missionIndex]));
+			FlxG.switchState(new MissionState(missionIndex));
 		}
 	}
 }

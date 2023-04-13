@@ -1,6 +1,5 @@
 package states;
 
-import GameData.MapData;
 import entities.Mob;
 import entities.MobSpawner;
 import entities.Player;
@@ -13,9 +12,9 @@ import ui.DamageManager;
 import ui.ExpBar;
 import ui.Indicator;
 
-class MapState extends FlxState
+class MissionState extends FlxState
 {
-	var mapData:MapData;
+	var missionIndex:Int;
 	var killCount:Int;
 	var score:Float;
 	var starsMissed:Float;
@@ -33,10 +32,10 @@ class MapState extends FlxState
 	var killCountText:FlxBitmapText;
 	var powerText:FlxBitmapText;
 
-	public function new(data:MapData)
+	public function new(missionIndex:Int)
 	{
 		super();
-		mapData = data;
+		this.missionIndex = missionIndex;
 		score = 0;
 		killCount = 0;
 		starsMissed = 0;
@@ -55,14 +54,14 @@ class MapState extends FlxState
 		add(floor);
 
 		player = new Player({
-			level: 1,
+			level: GameStorage.store.playerLevel,
 			maxMp: 10,
-			currentExp: 0,
-			expGoal: Formulae.calculateExpGoal(2)
+			currentExp: GameStorage.store.playerExp,
+			expGoal: Formulae.calculateExpGoal(GameStorage.store.playerLevel + 1)
 		});
 		add(player);
 
-		mobSpawner = new MobSpawner(mapData.possibleMobs, mapData.spawnRate);
+		mobSpawner = new MobSpawner(GameData.MISSION_DATA[missionIndex].possibleMobs, GameData.MISSION_DATA[missionIndex].spawnRate);
 		add(mobSpawner);
 
 		damageManager = new DamageManager();
@@ -72,13 +71,14 @@ class MapState extends FlxState
 		add(indicator);
 
 		expBar = new ExpBar(0, 0, 500, 20, player.playerInfo.expGoal, 5);
+		expBar.updateValue(GameStorage.store.playerExp);
 		add(expBar);
 
 		levelText = Globals.createBitmapText(30, 7, "Lvl: " + player.playerInfo.level, 1.25, false);
 		add(levelText);
 		missionScoreText = Globals.createBitmapText(30, 30, "Score: 0", 1.25, false);
 		add(missionScoreText);
-		killCountText = Globals.createBitmapText(30, 40, "Mobs left: " + mapData.killGoal, 1.25, false);
+		killCountText = Globals.createBitmapText(30, 40, "Mobs left: " + GameData.MISSION_DATA[missionIndex].killGoal, 1.25, false);
 		add(killCountText);
 		powerText = Globals.createBitmapText(30, 50, "Power: 0%", 1.25, false);
 		add(powerText);
@@ -88,7 +88,7 @@ class MapState extends FlxState
 	{
 		var accuracy = Math.round((starsHit / (starsMissed + starsHit)) * 100 * 100) / 100;
 		var repel = Math.max(Math.round(indicator.getRepel() * 100 * 100) / 100, 0);
-		FlxG.switchState(new GameOverState(score, accuracy, repel, mapData.sRankReq));
+		FlxG.switchState(new GameOverState(score, accuracy, repel, missionIndex));
 	}
 
 	override public function update(elapsed:Float)
@@ -97,7 +97,7 @@ class MapState extends FlxState
 
 		powerText.text = "Power: " + (Math.round(((player.throwForce - Globals.MIN_FORCE) / (Globals.MAX_FORCE - Globals.MIN_FORCE)) * 100 * 10) / 10);
 
-		if (killCount >= mapData.killGoal || indicator.getX() <= indicator.getStartX())
+		if (killCount >= GameData.MISSION_DATA[missionIndex].killGoal || indicator.getX() <= indicator.getStartX())
 		{
 			endMission();
 		}
@@ -126,7 +126,7 @@ class MapState extends FlxState
 				if (isDead)
 				{
 					killCount++;
-					killCountText.text = "Mobs left: " + (mapData.killGoal - killCount);
+					killCountText.text = "Mobs left: " + (GameData.MISSION_DATA[missionIndex].killGoal - killCount);
 					player.addExp(mob.mobData.exp);
 					levelText.text = "Lvl: " + player.playerInfo.level;
 					expBar.updateMax(player.playerInfo.expGoal);

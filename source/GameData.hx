@@ -22,7 +22,7 @@ typedef MobData =
 	var animations:Map<String, Array<Int>>;
 }
 
-typedef MapData =
+typedef MissionData =
 {
 	var name:String;
 	var killGoal:Int;
@@ -72,7 +72,7 @@ class GameData
 		}
 	];
 
-	public static var MAP_DATA:Array<MapData> = [
+	public static var MISSION_DATA:Array<MissionData> = [
 		{
 			name: "Green Snails Only",
 			killGoal: 10,

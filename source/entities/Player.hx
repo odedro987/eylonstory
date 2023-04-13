@@ -57,6 +57,9 @@ class Player extends FlxTypedGroup<FlxBasic>
 			playerInfo.level++;
 			playerInfo.expGoal = Formulae.calculateExpGoal(playerInfo.level + 1);
 		}
+
+		GameStorage.store.playerLevel = playerInfo.level;
+		GameStorage.store.playerExp = playerInfo.currentExp;
 	}
 
 	override function update(elapsed:Float)

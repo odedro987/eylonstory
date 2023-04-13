@@ -72,8 +72,8 @@ class GameData
 		}
 	];
 
-	public static var MAP_DATA:Map<String, MapData> = [
-		"green_snails_only" => {
+	public static var MAP_DATA:Array<MapData> = [
+		{
 			name: "Green Snails Only",
 			killGoal: 10,
 			possibleMobs: ["green_snail", "blue_snail"],
@@ -81,7 +81,7 @@ class GameData
 			sRankReq: 74000,
 			gpReq: 0
 		},
-		"rainbow_snails" => {
+		{
 			name: "Rainbow Snails",
 			killGoal: 10,
 			possibleMobs: ["green_snail", "blue_snail", "red_snail"],
@@ -89,13 +89,101 @@ class GameData
 			sRankReq: 200000,
 			gpReq: 3
 		},
-		"forgotten_path_of_time_II" => {
-			name: "Forgotten Path of Time II",
+		{
+			name: "Red Snerg Rush",
 			killGoal: 10,
 			possibleMobs: ["green_snail", "blue_snail", "red_snail"],
 			spawnRate: 3,
-			sRankReq: 310000000,
-			gpReq: 574
+			sRankReq: 450000,
+			gpReq: 25
+		},
+		{
+			name: "Shroom & Friend",
+			killGoal: 10,
+			possibleMobs: ["green_snail", "blue_snail", "red_snail"],
+			spawnRate: 3,
+			sRankReq: 550000,
+			gpReq: 20
+		},
+		{
+			name: "Shroom & Big Friend",
+			killGoal: 10,
+			possibleMobs: ["green_snail", "blue_snail", "red_snail"],
+			spawnRate: 3,
+			sRankReq: 850000,
+			gpReq: 25
+		},
+		{
+			name: "Trouble Bubbling",
+			killGoal: 10,
+			possibleMobs: ["green_snail", "blue_snail", "red_snail"],
+			spawnRate: 3,
+			sRankReq: 1500000,
+			gpReq: 32
+		},
+		{
+			name: "Logger's Nightmare",
+			killGoal: 10,
+			possibleMobs: ["green_snail", "blue_snail", "red_snail"],
+			spawnRate: 3,
+			sRankReq: 2750000,
+			gpReq: 40
+		},
+		{
+			name: "Double Bubble Trouble",
+			killGoal: 10,
+			possibleMobs: ["green_snail", "blue_snail", "red_snail"],
+			spawnRate: 3,
+			sRankReq: 2100000,
+			gpReq: 46
+		},
+		{
+			name: "Slithers & Spikes",
+			killGoal: 10,
+			possibleMobs: ["green_snail", "blue_snail", "red_snail"],
+			spawnRate: 3,
+			sRankReq: 2400000,
+			gpReq: 52
+		},
+		{
+			name: "Fungi Force",
+			killGoal: 10,
+			possibleMobs: ["green_snail", "blue_snail", "red_snail"],
+			spawnRate: 3,
+			sRankReq: 2550000,
+			gpReq: 60
+		},
+		{
+			name: "March of the Slime King",
+			killGoal: 10,
+			possibleMobs: ["green_snail", "blue_snail", "red_snail"],
+			spawnRate: 3,
+			sRankReq: 4000000,
+			gpReq: 100
+		},
+		{
+			name: "Land of Wild Boar",
+			killGoal: 10,
+			possibleMobs: ["green_snail", "blue_snail", "red_snail"],
+			spawnRate: 3,
+			sRankReq: 3600000,
+			gpReq: 68
+		},
+		{
+			name: "Land of Wild Boar II",
+			killGoal: 10,
+			possibleMobs: ["green_snail", "blue_snail", "red_snail"],
+			spawnRate: 3,
+			sRankReq: 4500000,
+			gpReq: 75
+		},
+		{
+			name: "Leporidae Marching Band",
+			killGoal: 10,
+			possibleMobs: ["green_snail", "blue_snail", "red_snail"],
+			spawnRate: 3,
+			sRankReq: 7300000,
+			gpReq: 82
 		}
 	];
 }

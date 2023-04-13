@@ -5,7 +5,6 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxBitmapText;
-import flixel.ui.FlxButton.FlxTypedButton;
 import states.MapState;
 
 enum abstract MissionState(Int)
@@ -13,23 +12,24 @@ enum abstract MissionState(Int)
 	var LOCKED;
 	var NEW;
 	var CLEAR;
+	var FAIL;
 }
 
 class MissionBanner extends FlxTypedGroup<FlxSprite>
 {
 	var state:MissionState;
-	var missionName:String;
+	var missionIndex:Int;
 
 	var banner:FlxSprite;
 	var rankMedal:RankMedal;
 	var name:FlxBitmapText;
 	var infoText:FlxBitmapText;
 
-	public function new(x:Float, y:Float, missionName:String, state:MissionState = MissionState.LOCKED)
+	public function new(x:Float, y:Float, missionIndex:Int, state:MissionState = MissionState.LOCKED)
 	{
 		super(4);
 
-		this.missionName = missionName;
+		this.missionIndex = missionIndex;
 		this.state = state;
 
 		banner = new FlxSprite(x, y);
@@ -37,7 +37,9 @@ class MissionBanner extends FlxTypedGroup<FlxSprite>
 		banner.animation.frameIndex = cast(state, Int);
 		add(banner);
 
-		name = Globals.createBitmapText(x + 60, y + 10, GameData.MAP_DATA[missionName].name, 1.5, false);
+		var missionName = GameData.MAP_DATA[missionIndex].name;
+		var isLong = missionName.length <= 18;
+		name = Globals.createBitmapText(x + (isLong ? 110 : 60), y + 15, missionName, isLong ? 2 : 1.5, false);
 		add(name);
 
 		rankMedal = new RankMedal(x + 213, y + 44, MissionRank.E);
@@ -47,7 +49,7 @@ class MissionBanner extends FlxTypedGroup<FlxSprite>
 		infoText = Globals.createBitmapText(x + 60, y + 60, "", 1.5, false);
 		if (state == MissionState.LOCKED)
 		{
-			infoText.text = "Required GP: " + GameData.MAP_DATA[missionName].gpReq;
+			infoText.text = "Required GP: " + GameData.MAP_DATA[missionIndex].gpReq;
 		}
 		add(infoText);
 	}
@@ -66,7 +68,7 @@ class MissionBanner extends FlxTypedGroup<FlxSprite>
 
 		if (state != MissionState.LOCKED && FlxG.mouse.justPressed && FlxG.mouse.overlaps(banner))
 		{
-			FlxG.switchState(new MapState(GameData.MAP_DATA[missionName]));
+			FlxG.switchState(new MapState(GameData.MAP_DATA[missionIndex]));
 		}
 	}
 }

@@ -14,11 +14,6 @@ class Mob extends FlxSprite
 
 	public var isDying:Bool;
 
-	public function new()
-	{
-		super();
-	}
-
 	public function loadData(data:MobData)
 	{
 		mobData = data;

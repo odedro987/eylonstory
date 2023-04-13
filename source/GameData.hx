@@ -1,4 +1,4 @@
-enum abstract MissionRank(String)
+enum abstract MissionRank(Int)
 {
 	var E;
 	var D;
@@ -88,6 +88,14 @@ class GameData
 			spawnRate: 3,
 			sRankReq: 200000,
 			gpReq: 3
+		},
+		"forgotten_path_of_time_II" => {
+			name: "Forgotten Path of Time II",
+			killGoal: 10,
+			possibleMobs: ["green_snail", "blue_snail", "red_snail"],
+			spawnRate: 3,
+			sRankReq: 310000000,
+			gpReq: 574
 		}
 	];
 }

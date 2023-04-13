@@ -9,7 +9,6 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.text.FlxBitmapText;
-import flixel.text.FlxText;
 import ui.DamageManager;
 import ui.ExpBar;
 import ui.Indicator;
@@ -85,7 +84,7 @@ class MapState extends FlxState
 		add(powerText);
 	}
 
-	function endLevel()
+	function endMission()
 	{
 		var accuracy = Math.round((starsHit / (starsMissed + starsHit)) * 100 * 100) / 100;
 		var repel = Math.max(Math.round(indicator.getRepel() * 100 * 100) / 100, 0);
@@ -100,7 +99,7 @@ class MapState extends FlxState
 
 		if (killCount >= mapData.killGoal || indicator.getX() <= indicator.getStartX())
 		{
-			endLevel();
+			endMission();
 		}
 
 		var sorted = mobSpawner.members.filter(mob -> mob.alive);

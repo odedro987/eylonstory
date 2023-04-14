@@ -10,6 +10,9 @@ typedef PlayerInfo =
 	var level:Int;
 	var currentExp:Int;
 	var expGoal:Int;
+	var mastery:Float;
+	var critChance:Float;
+	var critDamage:Float;
 	var maxMp:Int;
 }
 

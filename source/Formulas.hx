@@ -11,6 +11,7 @@ class Formulas
 
 	public static function getRandomDamage(playerInfo:PlayerInfo)
 	{
+		// TODO: change 40 to watk and 15 to star watk
 		var maxDmg = 20 * playerInfo.level * ((40 + 15) / 100);
 		var minDmg = playerInfo.mastery * maxDmg;
 		var dmg = Math.round(FlxG.random.float(minDmg, maxDmg));

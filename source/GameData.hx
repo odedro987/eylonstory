@@ -85,7 +85,7 @@ class GameData
 			name: "Rainbow Snails",
 			killGoal: 25,
 			possibleMobs: ["green_snail", "blue_snail", "red_snail"],
-			spawnRate: 3,
+			spawnRate: 1.5,
 			sRankReq: 200000,
 			gpReq: 3
 		},
@@ -93,7 +93,7 @@ class GameData
 			name: "Red Snerg Rush",
 			killGoal: 25,
 			possibleMobs: ["green_snail", "blue_snail", "red_snail"],
-			spawnRate: 3,
+			spawnRate: 1.5,
 			sRankReq: 450000,
 			gpReq: 25
 		},
@@ -101,7 +101,7 @@ class GameData
 			name: "Shroom & Friend",
 			killGoal: 25,
 			possibleMobs: ["green_snail", "blue_snail", "red_snail"],
-			spawnRate: 3,
+			spawnRate: 1.5,
 			sRankReq: 550000,
 			gpReq: 20
 		},
@@ -109,7 +109,7 @@ class GameData
 			name: "Shroom & Big Friend",
 			killGoal: 25,
 			possibleMobs: ["green_snail", "blue_snail", "red_snail"],
-			spawnRate: 3,
+			spawnRate: 1.5,
 			sRankReq: 850000,
 			gpReq: 25
 		},
@@ -117,7 +117,7 @@ class GameData
 			name: "Trouble Bubbling",
 			killGoal: 25,
 			possibleMobs: ["green_snail", "blue_snail", "red_snail"],
-			spawnRate: 3,
+			spawnRate: 1.5,
 			sRankReq: 1500000,
 			gpReq: 32
 		},
@@ -125,7 +125,7 @@ class GameData
 			name: "Logger's Nightmare",
 			killGoal: 25,
 			possibleMobs: ["green_snail", "blue_snail", "red_snail"],
-			spawnRate: 3,
+			spawnRate: 1.5,
 			sRankReq: 2750000,
 			gpReq: 40
 		},
@@ -133,7 +133,7 @@ class GameData
 			name: "Double Bubble Trouble",
 			killGoal: 25,
 			possibleMobs: ["green_snail", "blue_snail", "red_snail"],
-			spawnRate: 3,
+			spawnRate: 1.5,
 			sRankReq: 2100000,
 			gpReq: 46
 		},
@@ -141,7 +141,7 @@ class GameData
 			name: "Slithers & Spikes",
 			killGoal: 25,
 			possibleMobs: ["green_snail", "blue_snail", "red_snail"],
-			spawnRate: 3,
+			spawnRate: 1.5,
 			sRankReq: 2400000,
 			gpReq: 52
 		},
@@ -149,7 +149,7 @@ class GameData
 			name: "Fungi Force",
 			killGoal: 25,
 			possibleMobs: ["green_snail", "blue_snail", "red_snail"],
-			spawnRate: 3,
+			spawnRate: 1.5,
 			sRankReq: 2550000,
 			gpReq: 60
 		},
@@ -157,7 +157,7 @@ class GameData
 			name: "March of the Slime King",
 			killGoal: 25,
 			possibleMobs: ["green_snail", "blue_snail", "red_snail"],
-			spawnRate: 3,
+			spawnRate: 1.5,
 			sRankReq: 4000000,
 			gpReq: 100
 		},
@@ -165,7 +165,7 @@ class GameData
 			name: "Land of Wild Boar",
 			killGoal: 25,
 			possibleMobs: ["green_snail", "blue_snail", "red_snail"],
-			spawnRate: 3,
+			spawnRate: 1.5,
 			sRankReq: 3600000,
 			gpReq: 68
 		},
@@ -173,7 +173,7 @@ class GameData
 			name: "Land of Wild Boar II",
 			killGoal: 25,
 			possibleMobs: ["green_snail", "blue_snail", "red_snail"],
-			spawnRate: 3,
+			spawnRate: 1.5,
 			sRankReq: 4500000,
 			gpReq: 75
 		},
@@ -181,7 +181,7 @@ class GameData
 			name: "Leporidae Marching Band",
 			killGoal: 25,
 			possibleMobs: ["green_snail", "blue_snail", "red_snail"],
-			spawnRate: 3,
+			spawnRate: 1.5,
 			sRankReq: 7300000,
 			gpReq: 82
 		}

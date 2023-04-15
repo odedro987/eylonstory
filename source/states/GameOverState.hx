@@ -2,6 +2,7 @@ package states;
 
 import flixel.FlxG;
 import flixel.FlxState;
+import ui.ArrowButton;
 import ui.RankMedal;
 
 class GameOverState extends FlxState
@@ -39,6 +40,9 @@ class GameOverState extends FlxState
 		var rankMedal = new RankMedal(FlxG.width / 2, FlxG.height / 4 + 140 + 35, rank);
 		rankMedal.scale.set(2, 2);
 		add(rankMedal);
+
+		var nextArrow = new ArrowButton(FlxG.width / 2 + 60, FlxG.height / 4 + 140 + 35, () -> FlxG.switchState(new MenuState()));
+		add(nextArrow);
 
 		// Update mission attempts
 		GameStorage.store.missionRecords[missionIndex].attempts++;

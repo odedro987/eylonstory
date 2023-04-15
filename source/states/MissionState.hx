@@ -8,7 +8,6 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.text.FlxBitmapText;
-import haxe.display.Display.Package;
 import ui.DamageManager;
 import ui.ExpBar;
 import ui.Indicator;
@@ -61,7 +60,7 @@ class MissionState extends FlxState
 			critChance: 0.2,
 			critDamage: 1.1,
 			currentExp: GameStorage.store.playerExp,
-			expGoal: Formulae.calculateExpGoal(GameStorage.store.playerLevel + 1)
+			expGoal: Formulas.calculateExpGoal(GameStorage.store.playerLevel + 1)
 		});
 		add(player);
 
@@ -121,17 +120,10 @@ class MissionState extends FlxState
 				star.setIsConsumed(true);
 				star.kill();
 				starsHit++;
-				var maxDmg = 20 * player.playerInfo.level * ((40 + 15) / 100);
-				var minDmg = player.playerInfo.mastery * maxDmg;
-				var dmg = Math.round(FlxG.random.float(minDmg, maxDmg));
-				var isCrit = FlxG.random.float() <= player.playerInfo.critChance;
-				if (isCrit)
-				{
-					dmg = Math.round(dmg * player.playerInfo.critDamage);
-				}
-				var damageScore = Math.min(dmg, mob.health);
-				var isDead = mob.dealDamage(dmg);
-				damageManager.spawnDamage(mob.x + mob.width / 2, mob.y, dmg, isCrit);
+				var dmgObj = Formulas.getRandomDamage(player.playerInfo);
+				var damageScore = Math.min(dmgObj.damage, mob.health);
+				var isDead = mob.dealDamage(dmgObj.damage);
+				damageManager.spawnDamage(mob.x + mob.width / 2, mob.y, dmgObj.damage, dmgObj.isCrit);
 
 				if (isDead)
 				{

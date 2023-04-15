@@ -2,12 +2,10 @@ package states;
 
 import flixel.FlxG;
 import flixel.FlxState;
-import flixel.text.FlxText;
 import ui.RankMedal;
 
 class GameOverState extends FlxState
 {
-	var points:Int;
 	var score:Float;
 	var accuracy:Float;
 	var repel:Float;
@@ -20,24 +18,52 @@ class GameOverState extends FlxState
 		this.accuracy = accuracy;
 		this.repel = repel;
 		this.missionIndex = missionIndex;
-		this.points = Math.round(((score * accuracy) * repel) * 0.001);
 	}
 
 	override public function create()
 	{
 		super.create();
 
-		add(Globals.createBitmapText(FlxG.width / 2, FlxG.height / 3, "Score: " + score, 2));
-		add(Globals.createBitmapText(FlxG.width / 2, FlxG.height / 3 + 20, "Accuracy: " + accuracy + "%", 2));
-		add(Globals.createBitmapText(FlxG.width / 2, FlxG.height / 3 + 40, "Repel: " + repel + "%", 2));
-		add(Globals.createBitmapText(FlxG.width / 2, FlxG.height / 3 + 100, "Total Points: " + points, 3));
-		var rank = Formulae.calculateMissionRank(points, GameData.MISSION_DATA[missionIndex].sRankReq);
-		var rankMedal = new RankMedal(FlxG.width / 2, FlxG.height / 3 + 100 + 35, rank);
+		var points = Formulas.calculateTotalPoints(score, repel, accuracy);
+		var rank = Formulas.calculateMissionRank(points, GameData.MISSION_DATA[missionIndex].sRankReq);
+		var mesos = Formulas.calculateMissionMesos(score, repel, accuracy);
+		var bonusExp = Formulas.calculateMissionBonusExp(points, rank, 1);
+		var gp = Formulas.calculateMissionGP(rank);
+
+		add(Globals.createBitmapText(FlxG.width / 2, FlxG.height / 4, "Score: " + score, 2));
+		add(Globals.createBitmapText(FlxG.width / 2, FlxG.height / 4 + 20, "Accuracy: " + accuracy + "%", 2));
+		add(Globals.createBitmapText(FlxG.width / 2, FlxG.height / 4 + 40, "Repel: " + repel + "%", 2));
+		add(Globals.createBitmapText(FlxG.width / 2, FlxG.height / 4 + 60, "Bonus EXP: " + bonusExp, 2));
+		add(Globals.createBitmapText(FlxG.width / 2, FlxG.height / 4 + 80, "Mesos: " + mesos, 2));
+		add(Globals.createBitmapText(FlxG.width / 2, FlxG.height / 4 + 140, "Total Points: " + points, 3));
+		var rankMedal = new RankMedal(FlxG.width / 2, FlxG.height / 4 + 140 + 35, rank);
 		rankMedal.scale.set(2, 2);
 		add(rankMedal);
 
+		// Update mission attempts
 		GameStorage.store.missionRecords[missionIndex].attempts++;
-		GameStorage.store.missionRecords[missionIndex].highscore = points;
+		// Update mission highscore if higher than last highscore
+		var lastHighscore = GameStorage.store.missionRecords[missionIndex].highscore;
+		if (lastHighscore < points)
+		{
+			GameStorage.store.missionRecords[missionIndex].highscore = points;
+			// Update GP if higher than last earned GP from the mission
+			var lastRank = Formulas.calculateMissionRank(lastHighscore, GameData.MISSION_DATA[missionIndex].sRankReq);
+			var lastGP = Formulas.calculateMissionGP(lastRank);
+			if (lastGP < gp)
+			{
+				GameStorage.store.playerGP += gp - lastGP;
+			}
+		}
+		GameStorage.store.playerMesos += mesos;
+		GameStorage.store.playerExp += bonusExp;
+		// Level up player if adding bonus exp exceeds exp goal
+		var expGoal = Formulas.calculateExpGoal(GameStorage.store.playerLevel);
+		if (GameStorage.store.playerExp >= expGoal)
+		{
+			GameStorage.store.playerExp -= expGoal;
+			GameStorage.store.playerLevel++;
+		}
 
 		GameStorage.save();
 	}

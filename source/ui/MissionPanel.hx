@@ -1,8 +1,6 @@
 package ui;
 
-import GameData.MissionRank;
 import flixel.FlxBasic;
-import flixel.FlxG;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import ui.MissionBanner.MissionBannerState;
 
@@ -45,7 +43,7 @@ class MissionPanel extends FlxTypedGroup<FlxBasic>
 			var mission = new MissionBanner(x - 280, y + 90 * (i % 4), i, missionState);
 			if (highscore > 0)
 			{
-				mission.setClear(Formulae.calculateMissionRank(highscore, GameData.MISSION_DATA[i].sRankReq), highscore);
+				mission.setClear(Formulas.calculateMissionRank(highscore, GameData.MISSION_DATA[i].sRankReq), highscore);
 			}
 			if (GameData.MISSION_DATA[i].gpReq < 20) {}
 			mission.exists = false;

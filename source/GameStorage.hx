@@ -1,5 +1,4 @@
 import flixel.util.FlxSave;
-import js.html.StorageEvent;
 
 typedef MissionRecord =
 {
@@ -20,6 +19,7 @@ class GameStorage
 {
 	public static var gameSave:FlxSave;
 	public static var store:Store;
+	public static var hasLoaded:Bool = false;
 
 	public static function init()
 	{
@@ -30,6 +30,7 @@ class GameStorage
 	public static function initStore(initialStore:Store)
 	{
 		store = initialStore;
+		hasLoaded = true;
 	}
 
 	public static function save()
@@ -65,6 +66,7 @@ class GameStorage
 			missionRecords: gameSave.data.missionRecords,
 		}
 
+		hasLoaded = true;
 		return true;
 	}
 }

@@ -58,7 +58,7 @@ class Player extends FlxTypedGroup<FlxBasic>
 		{
 			playerInfo.currentExp -= playerInfo.expGoal;
 			playerInfo.level++;
-			playerInfo.expGoal = Formulae.calculateExpGoal(playerInfo.level + 1);
+			playerInfo.expGoal = Formulas.calculateExpGoal(playerInfo.level + 1);
 		}
 
 		GameStorage.store.playerLevel = playerInfo.level;

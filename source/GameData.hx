@@ -77,7 +77,7 @@ class GameData
 			name: "Green Snails Only",
 			killGoal: 25,
 			possibleMobs: ["green_snail", "blue_snail"],
-			spawnRate: 0.5,
+			spawnRate: 1.5,
 			sRankReq: 74000,
 			gpReq: 0
 		},

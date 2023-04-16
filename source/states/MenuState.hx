@@ -1,10 +1,8 @@
 package states;
 
-import GameData.BowData;
 import GameStorage.MissionRecord;
 import flixel.FlxG;
 import flixel.FlxState;
-import ui.ItemSlot.BowSlot;
 import ui.MissionPanel;
 import ui.Shop;
 
@@ -33,6 +31,8 @@ class MenuState extends FlxState
 					playerExp: 0,
 					playerMesos: 0,
 					playerGP: 0,
+					playerCurrentBow: 0,
+					ownedBows: [{bowIndex: 0, bonusWatk: 0, scrollSlots: 7}],
 					missionRecords: emptyRecord
 				});
 			}

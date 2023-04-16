@@ -3,7 +3,6 @@ package ui;
 import flixel.FlxBasic;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup.FlxTypedGroup;
-import ui.ItemSlot.BowSlot;
 
 class Shop extends FlxTypedGroup<FlxBasic>
 {

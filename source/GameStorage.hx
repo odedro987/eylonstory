@@ -6,12 +6,21 @@ typedef MissionRecord =
 	var attempts:Int;
 }
 
+typedef BowRecord =
+{
+	var bowIndex:Int;
+	var scrollSlots:Int;
+	var bonusWatk:Int;
+}
+
 typedef Store =
 {
 	var playerLevel:Int;
 	var playerExp:Int;
 	var playerMesos:Int;
 	var playerGP:Int;
+	var playerCurrentBow:Int;
+	var ownedBows:Array<BowRecord>;
 	var missionRecords:Array<MissionRecord>;
 }
 
@@ -51,11 +60,17 @@ class GameStorage
 			return false;
 		}
 
-		if (gameSave.data.playerLevel == null || gameSave.data.playerExp == null || gameSave.data.playerMesos == null || gameSave.data.playerGP == null
-			|| gameSave.data.missionRecords == null)
+		if (gameSave.data.playerLevel == null
+			|| gameSave.data.playerExp == null
+			|| gameSave.data.playerMesos == null
+			|| gameSave.data.playerGP == null
+			|| gameSave.data.missionRecords == null
+			|| gameSave.data.playerCurrentBow == null
+			|| gameSave.data.ownedBows == null)
 		{
 			trace("save data corrupted, resetting");
 			gameSave.erase();
+			return false;
 		}
 
 		store = {
@@ -63,6 +78,8 @@ class GameStorage
 			playerExp: gameSave.data.playerExp,
 			playerMesos: gameSave.data.playerMesos,
 			playerGP: gameSave.data.playerGP,
+			playerCurrentBow: gameSave.data.playerCurrentBow,
+			ownedBows: gameSave.data.ownedBows,
 			missionRecords: gameSave.data.missionRecords,
 		}
 

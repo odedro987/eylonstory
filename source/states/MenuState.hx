@@ -1,9 +1,12 @@
 package states;
 
+import GameData.BowData;
 import GameStorage.MissionRecord;
 import flixel.FlxG;
 import flixel.FlxState;
+import ui.ItemSlot.BowSlot;
 import ui.MissionPanel;
+import ui.Shop;
 
 class MenuState extends FlxState
 {
@@ -38,5 +41,7 @@ class MenuState extends FlxState
 		add(Globals.createBitmapText(120, 20, "GP: " + GameStorage.store.playerGP, 2, false));
 		add(Globals.createBitmapText(120, 40, "Mesos: " + GameStorage.store.playerMesos, 2, false));
 		add(new MissionPanel(FlxG.width, 10));
+
+		add(new Shop(20, 60));
 	}
 }

@@ -32,8 +32,76 @@ typedef MissionData =
 	var gpReq:Float;
 }
 
+typedef BowData =
+{
+	var name:String;
+	var weaponAttack:Int;
+	var mesosCost:Int;
+	var pointsReq:Int;
+	var sprite:String;
+}
+
 class GameData
 {
+	public static var BOW_DATA:Array<BowData> = [
+		{
+			name: "Beginner's Bow",
+			pointsReq: 0,
+			mesosCost: 0,
+			weaponAttack: 20,
+			sprite: "assets/images/bows/beginners_bow.png"
+		},
+		{
+			name: "Training Bow",
+			pointsReq: 1,
+			mesosCost: 800,
+			weaponAttack: 22,
+			sprite: "assets/images/bows/beginners_bow.png"
+		},
+		{
+			name: "Sport Bow",
+			pointsReq: 280000,
+			mesosCost: 1800,
+			weaponAttack: 24,
+			sprite: "assets/images/bows/beginners_bow.png"
+		},
+		{
+			name: "Red Bow",
+			pointsReq: 750000,
+			mesosCost: 5600,
+			weaponAttack: 28,
+			sprite: "assets/images/bows/beginners_bow.png"
+		},
+		{
+			name: "Composite Bow",
+			pointsReq: 1400000,
+			mesosCost: 8000,
+			weaponAttack: 30,
+			sprite: "assets/images/bows/composite_bow.png"
+		},
+		{
+			name: "Dual Composite Bow",
+			pointsReq: 2000000,
+			mesosCost: 12600,
+			weaponAttack: 32,
+			sprite: "assets/images/bows/beginners_bow.png"
+		},
+		{
+			name: "Hunter's Bow",
+			pointsReq: 3000000,
+			mesosCost: 17000,
+			weaponAttack: 34,
+			sprite: "assets/images/bows/beginners_bow.png"
+		},
+		{
+			name: "Battle Bow",
+			pointsReq: 4500000,
+			mesosCost: 22500,
+			weaponAttack: 36,
+			sprite: "assets/images/bows/beginners_bow.png"
+		}
+	];
+
 	public static var MOB_DATA:Map<String, MobData> = [
 		"green_snail" => {
 			health: 8,

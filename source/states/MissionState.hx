@@ -17,8 +17,8 @@ class MissionState extends FlxState
 	var missionIndex:Int;
 	var killCount:Int;
 	var score:Float;
-	var starsMissed:Float;
-	var starsHit:Float;
+	var starsMissed:Int;
+	var starsHit:Int;
 
 	var damageManager:DamageManager;
 	var player:Player;
@@ -89,8 +89,8 @@ class MissionState extends FlxState
 
 	function endMission()
 	{
-		var accuracy = Math.round((starsHit / (starsMissed + starsHit)) * 100 * 100) / 100;
-		var repel = Math.max(Math.round(indicator.getRepel() * 100 * 100) / 100, 0);
+		var accuracy = Formulas.calculateAccuracy(starsHit, starsMissed);
+		var repel = Formulas.calculateRepel(indicator.getRepel());
 		FlxG.switchState(new GameOverState(score, accuracy, repel, missionIndex));
 	}
 
@@ -121,7 +121,7 @@ class MissionState extends FlxState
 				star.kill();
 				starsHit++;
 				var dmgObj = Formulas.getRandomDamage(player.playerInfo);
-				var damageScore = Math.min(dmgObj.damage, mob.health);
+				var damageCap = Math.min(dmgObj.damage, mob.health);
 				var isDead = mob.dealDamage(dmgObj.damage);
 				damageManager.spawnDamage(mob.x + mob.width / 2, mob.y, dmgObj.damage, dmgObj.isCrit);
 
@@ -135,8 +135,8 @@ class MissionState extends FlxState
 					expBar.updateValue(player.playerInfo.currentExp);
 				}
 
-				var pointMultiplier = (mob.x + 350) / (350 - Math.min(star.getAirFrames(), 90));
-				score += Math.round((10 * pointMultiplier) * damageScore);
+				var pointMultiplier = Formulas.calculatePointsMultiplier(mob.x, star.getAirFrames());
+				score += Formulas.calculateDamageScore(pointMultiplier, damageCap);
 				missionScoreText.text = "Score: " + score;
 			}
 		});

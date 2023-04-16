@@ -9,6 +9,26 @@ class Formulas
 		return Math.floor((level * (level + 1) * (level + 2)) / 2);
 	}
 
+	public static function calculateAccuracy(starsHit:Int, starsMissed:Int)
+	{
+		return Math.round((starsHit / (starsMissed + starsHit)) * 100 * 100) / 100;
+	}
+
+	public static function calculateRepel(repelValue:Float)
+	{
+		return Math.min(Math.max(Math.round(repelValue * 100 * 100) / 100, 0), 100);
+	}
+
+	public static function calculatePointsMultiplier(mobX:Float, airTime:Float)
+	{
+		return (mobX + 300) / (300 - Math.min(airTime, 80));
+	}
+
+	public static function calculateDamageScore(pointsMultiplier:Float, damage:Float)
+	{
+		return Math.round((10 * pointsMultiplier) * damage);
+	}
+
 	public static function getRandomDamage(playerInfo:PlayerInfo)
 	{
 		// TODO: change 40 to watk and 15 to star watk

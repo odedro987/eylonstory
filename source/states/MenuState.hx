@@ -3,6 +3,7 @@ package states;
 import GameStorage.MissionRecord;
 import flixel.FlxG;
 import flixel.FlxState;
+import flixel.system.FlxSound;
 import ui.MissionPanel;
 import ui.Shop;
 
@@ -12,6 +13,11 @@ class MenuState extends FlxState
 	{
 		super.create();
 		FlxG.mouse.load(AssetPaths.cursor__png);
+
+		if (FlxG.sound.music == null) // don't restart the music if it's already playing
+		{
+			FlxG.sound.playMusic(AssetPaths.login_screen__ogg, 1, true);
+		}
 
 		if (!GameStorage.hasLoaded)
 		{

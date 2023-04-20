@@ -5,26 +5,19 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import states.MenuState;
-import ui.SpriteButton.ArrowButton;
 
 class Shop extends FlxTypedGroup<FlxBasic>
 {
 	var items:FlxTypedGroup<BowSlot>;
 	var shopUI:FlxSprite;
-	var prevArrow:ArrowButton;
-	var nextArrow:ArrowButton;
 	var buyItem:SpriteButton;
 	var leaveShop:SpriteButton;
-	var currentPage:Float;
-	var lastPage:Float;
 	var itemsPerPage:Int;
 
 	public function new(x:Float, y:Float, itemsPerPage:Int = 5)
 	{
 		super(6);
 
-		currentPage = 0;
-		lastPage = 0;
 		this.itemsPerPage = itemsPerPage;
 
 		shopUI = new FlxSprite(x, y, AssetPaths.shop__png);
@@ -47,37 +40,7 @@ class Shop extends FlxTypedGroup<FlxBasic>
 			items.add(bow);
 		}
 		add(items);
-		renderPage();
 
-		prevArrow = new ArrowButton(x + 20, y + 350, () ->
-		{
-			if (currentPage > 0)
-			{
-				lastPage = currentPage;
-				currentPage--;
-				renderPage();
-			}
-		});
-		prevArrow.flipX = true;
-		add(prevArrow);
-		nextArrow = new ArrowButton(x + 160, y + 350, () ->
-		{
-			if (currentPage < items.length / itemsPerPage - 1)
-			{
-				lastPage = currentPage;
-				currentPage++;
-				renderPage();
-			}
-		});
-		add(nextArrow);
-	}
-
-	function renderPage()
-	{
-		for (i in 0...itemsPerPage)
-		{
-			items.members[Math.round(Math.min(lastPage * itemsPerPage + i, items.length - 1))].exists = false;
-			items.members[Math.round(Math.min(currentPage * itemsPerPage + i, items.length - 1))].exists = true;
-		}
+		add(new Pagination(x + 20, y, items, itemsPerPage, 140));
 	}
 }

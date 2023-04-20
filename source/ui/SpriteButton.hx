@@ -12,11 +12,3 @@ class SpriteButton extends FlxTypedButton<FlxSprite>
 		graphicLoaded();
 	}
 }
-
-class ArrowButton extends SpriteButton
-{
-	public function new(x:Float, y:Float, ?onClick:Void->Void)
-	{
-		super(x, y, AssetPaths.arrow_button__png, 46, 36, onClick);
-	}
-}

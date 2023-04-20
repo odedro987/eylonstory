@@ -3,22 +3,14 @@ package ui;
 import flixel.FlxBasic;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import ui.MissionBanner.MissionBannerState;
-import ui.SpriteButton.ArrowButton;
 
 class MissionPanel extends FlxTypedGroup<FlxBasic>
 {
 	var missions:FlxTypedGroup<MissionBanner>;
-	var prevArrow:ArrowButton;
-	var nextArrow:ArrowButton;
-	var currentPage:Float;
-	var lastPage:Float;
 
 	public function new(x:Float, y:Float)
 	{
 		super(3);
-
-		currentPage = 0;
-		lastPage = 0;
 
 		missions = new FlxTypedGroup();
 		for (i in 0...GameData.MISSION_DATA.length)
@@ -51,38 +43,7 @@ class MissionPanel extends FlxTypedGroup<FlxBasic>
 			missions.add(mission);
 		}
 		add(missions);
-		renderPage();
 
-		prevArrow = new ArrowButton(x + 20, y + 360, () ->
-		{
-			if (currentPage > 0)
-			{
-				lastPage = currentPage;
-				currentPage--;
-				renderPage();
-			}
-		});
-		prevArrow.flipX = true;
-		add(prevArrow);
-
-		nextArrow = new ArrowButton(x + 200, y + 360, () ->
-		{
-			if (currentPage < missions.length / 4 - 1)
-			{
-				lastPage = currentPage;
-				currentPage++;
-				renderPage();
-			}
-		});
-		add(nextArrow);
-	}
-
-	function renderPage()
-	{
-		for (i in 0...4)
-		{
-			missions.members[Math.round(Math.min(lastPage * 4 + i, missions.length - 1))].exists = false;
-			missions.members[Math.round(Math.min(currentPage * 4 + i, missions.length - 1))].exists = true;
-		}
+		add(new Pagination(x + 20, y, missions, 4));
 	}
 }

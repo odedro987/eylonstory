@@ -1,7 +1,6 @@
 package entities;
 
 import flixel.FlxSprite;
-import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
 
 class Arrow extends FlxSprite

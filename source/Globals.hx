@@ -14,7 +14,7 @@ class Globals
 	// Font
 	public static var fontXNA:FlxBitmapFont;
 
-	public static inline function createBitmapText(x:Float, y:Float, text:String, size:Float = 1, autoSize:Bool = true)
+	public static function createBitmapText(x:Float, y:Float, text:String, size:Float = 1, autoSize:Bool = true)
 	{
 		var bitmapText = new FlxBitmapText(fontXNA);
 		bitmapText.setPosition(x, y);

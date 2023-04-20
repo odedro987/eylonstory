@@ -1,23 +1,28 @@
 package entities;
 
 import flixel.FlxSprite;
+import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
 
-class Star extends FlxSprite
+class Arrow extends FlxSprite
 {
 	var airFrames:Float;
 	var isConsumed:Bool;
+	var lastPos:FlxPoint;
 
 	public function new(x:Float, y:Float)
 	{
-		super(x, y, AssetPaths.star_subi__png);
+		super(x, y, AssetPaths.arrow_normal__png);
+		lastPos = FlxPoint.get(x, y);
 	}
 
 	public function deploy(pos:FlxPoint, force:Float, angle:Float)
 	{
 		setPosition(pos.x, pos.y);
+		lastPos.set(pos.x, pos.y);
 		velocity.set(force, 0);
 		velocity.pivotDegrees(FlxPoint.get(0, 0), angle);
+		this.angle = angle;
 		isConsumed = false;
 	}
 
@@ -42,8 +47,9 @@ class Star extends FlxSprite
 
 		velocity.y += 500 * elapsed;
 
-		angle += 600 * elapsed;
-
 		airFrames += 1;
+
+		angle = getPosition().degreesFrom(lastPos);
+		lastPos.set(x, y);
 	}
 }

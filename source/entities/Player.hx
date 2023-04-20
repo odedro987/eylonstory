@@ -18,10 +18,10 @@ typedef PlayerInfo =
 
 class Player extends FlxTypedGroup<FlxBasic>
 {
-	public var stars:FlxTypedGroup<Star>;
+	public var arrows:FlxTypedGroup<Arrow>;
 	public var playerInfo:PlayerInfo;
 
-	public var throwForce:Float;
+	public var shootForce:Float;
 	public var chargeSpeed:Float;
 
 	var player:FlxSprite;
@@ -33,22 +33,22 @@ class Player extends FlxTypedGroup<FlxBasic>
 		player.loadGraphic(AssetPaths.player__png, true, 55, 70);
 		add(player);
 
-		stars = new FlxTypedGroup<Star>();
-		add(stars);
+		arrows = new FlxTypedGroup<Arrow>();
+		add(arrows);
 
 		playerInfo = data;
-		throwForce = Globals.MIN_FORCE;
+		shootForce = Globals.MIN_FORCE;
 		chargeSpeed = 300;
 	}
 
-	function throwStar()
+	function shootArrow()
 	{
-		var star = stars.recycle(Star);
+		var arrow = arrows.recycle(Arrow);
 		var midPoint = player.getMidpoint();
 		var angle = midPoint.degreesTo(FlxG.mouse.getPosition());
-		star.deploy(midPoint, throwForce, angle);
+		arrow.deploy(midPoint, shootForce, angle);
 
-		throwForce = Globals.MIN_FORCE;
+		shootForce = Globals.MIN_FORCE;
 	}
 
 	public function addExp(amount:Int)
@@ -69,16 +69,16 @@ class Player extends FlxTypedGroup<FlxBasic>
 	{
 		super.update(elapsed);
 
-		if (FlxG.mouse.pressed && throwForce < Globals.MAX_FORCE)
+		if (FlxG.mouse.pressed && shootForce < Globals.MAX_FORCE)
 		{
-			throwForce += chargeSpeed * elapsed;
-			if (throwForce > Globals.MAX_FORCE)
-				throwForce = Globals.MAX_FORCE;
+			shootForce += chargeSpeed * elapsed;
+			if (shootForce > Globals.MAX_FORCE)
+				shootForce = Globals.MAX_FORCE;
 		}
 
 		if (FlxG.mouse.justReleased)
 		{
-			throwStar();
+			shootArrow();
 		}
 	}
 }

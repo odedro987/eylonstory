@@ -9,9 +9,9 @@ class Formulas
 		return Math.floor((level * (level + 1) * (level + 2)) / 2);
 	}
 
-	public static function calculateAccuracy(starsHit:Int, starsMissed:Int)
+	public static function calculateAccuracy(arrowsHit:Int, arrowsMissed:Int)
 	{
-		return Math.round((starsHit / (starsMissed + starsHit)) * 100 * 100) / 100;
+		return Math.round((arrowsHit / (arrowsMissed + arrowsHit)) * 100 * 100) / 100;
 	}
 
 	public static function calculateRepel(repelValue:Float)
@@ -31,7 +31,7 @@ class Formulas
 
 	public static function getRandomDamage(playerInfo:PlayerInfo)
 	{
-		// TODO: change 40 to watk and 15 to star watk
+		// TODO: change 40 to watk and 15 to arrow watk
 		var maxDmg = 20 * playerInfo.level * ((40 + 15) / 100);
 		var minDmg = playerInfo.mastery * maxDmg;
 		var dmg = Math.round(FlxG.random.float(minDmg, maxDmg));

@@ -1,9 +1,9 @@
 package states;
 
+import entities.Arrow;
 import entities.Mob;
 import entities.MobSpawner;
 import entities.Player;
-import entities.Star;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
@@ -17,8 +17,8 @@ class MissionState extends FlxState
 	var missionIndex:Int;
 	var killCount:Int;
 	var score:Float;
-	var starsMissed:Int;
-	var starsHit:Int;
+	var arrowsMissed:Int;
+	var arrowsHit:Int;
 
 	var damageManager:DamageManager;
 	var player:Player;
@@ -38,8 +38,8 @@ class MissionState extends FlxState
 		this.missionIndex = missionIndex;
 		score = 0;
 		killCount = 0;
-		starsMissed = 0;
-		starsHit = 0;
+		arrowsMissed = 0;
+		arrowsHit = 0;
 	}
 
 	override public function create()
@@ -89,7 +89,7 @@ class MissionState extends FlxState
 
 	function endMission()
 	{
-		var accuracy = Formulas.calculateAccuracy(starsHit, starsMissed);
+		var accuracy = Formulas.calculateAccuracy(arrowsHit, arrowsMissed);
 		var repel = Formulas.calculateRepel(indicator.getRepel());
 		FlxG.switchState(new GameOverState(score, accuracy, repel, missionIndex));
 	}
@@ -98,7 +98,7 @@ class MissionState extends FlxState
 	{
 		super.update(elapsed);
 
-		powerText.text = "Power: " + (Math.round(((player.throwForce - Globals.MIN_FORCE) / (Globals.MAX_FORCE - Globals.MIN_FORCE)) * 100 * 10) / 10);
+		powerText.text = "Power: " + (Math.round(((player.shootForce - Globals.MIN_FORCE) / (Globals.MAX_FORCE - Globals.MIN_FORCE)) * 100 * 10) / 10);
 
 		if (killCount >= GameData.MISSION_DATA[missionIndex].killGoal || indicator.getX() <= indicator.getStartX())
 		{
@@ -113,13 +113,13 @@ class MissionState extends FlxState
 			indicator.setFollow(sorted[0]);
 		}
 
-		FlxG.overlap(player.stars, mobSpawner, (star:Star, mob:Mob) ->
+		FlxG.overlap(player.arrows, mobSpawner, (arrow:Arrow, mob:Mob) ->
 		{
-			if (!star.getIsConsumed() && !mob.isDying)
+			if (!arrow.getIsConsumed() && !mob.isDying)
 			{
-				star.setIsConsumed(true);
-				star.kill();
-				starsHit++;
+				arrow.setIsConsumed(true);
+				arrow.kill();
+				arrowsHit++;
 				var dmgObj = Formulas.getRandomDamage(player.playerInfo);
 				var damageCap = Math.min(dmgObj.damage, mob.health);
 				var isDead = mob.dealDamage(dmgObj.damage);
@@ -135,16 +135,16 @@ class MissionState extends FlxState
 					expBar.updateValue(player.playerInfo.currentExp);
 				}
 
-				var pointMultiplier = Formulas.calculatePointsMultiplier(mob.x, star.getAirFrames());
+				var pointMultiplier = Formulas.calculatePointsMultiplier(mob.x, arrow.getAirFrames());
 				score += Formulas.calculateDamageScore(pointMultiplier, damageCap);
 				missionScoreText.text = "Score: " + score;
 			}
 		});
 
-		FlxG.overlap(player.stars, floor, (star:Star, floor:FlxSprite) ->
+		FlxG.overlap(player.arrows, floor, (arrow:Arrow, floor:FlxSprite) ->
 		{
-			star.kill();
-			starsMissed++;
+			arrow.kill();
+			arrowsMissed++;
 		});
 	}
 }

@@ -1,8 +1,11 @@
 package ui;
 
 import flixel.FlxBasic;
+import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup.FlxTypedGroup;
+import states.MenuState;
+import ui.SpriteButton.ArrowButton;
 
 class Shop extends FlxTypedGroup<FlxBasic>
 {
@@ -10,13 +13,15 @@ class Shop extends FlxTypedGroup<FlxBasic>
 	var shopUI:FlxSprite;
 	var prevArrow:ArrowButton;
 	var nextArrow:ArrowButton;
+	var buyItem:SpriteButton;
+	var leaveShop:SpriteButton;
 	var currentPage:Float;
 	var lastPage:Float;
 	var itemsPerPage:Int;
 
 	public function new(x:Float, y:Float, itemsPerPage:Int = 5)
 	{
-		super(4);
+		super(6);
 
 		currentPage = 0;
 		lastPage = 0;
@@ -24,6 +29,15 @@ class Shop extends FlxTypedGroup<FlxBasic>
 
 		shopUI = new FlxSprite(x, y, AssetPaths.shop__png);
 		add(shopUI);
+
+		buyItem = new SpriteButton(x + 141, y + 14, AssetPaths.buy_item_button__png, 80, 18, () ->
+		{
+			trace("buy");
+		});
+		add(buyItem);
+
+		leaveShop = new SpriteButton(x + 141, y + 34, AssetPaths.leave_shop_button__png, 80, 18, () -> FlxG.switchState(new MenuState()));
+		add(leaveShop);
 
 		items = new FlxTypedGroup();
 		for (i in 0...GameData.BOW_DATA.length)

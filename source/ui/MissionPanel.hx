@@ -3,6 +3,7 @@ package ui;
 import flixel.FlxBasic;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import ui.MissionBanner.MissionBannerState;
+import ui.SpriteButton.ArrowButton;
 
 class MissionPanel extends FlxTypedGroup<FlxBasic>
 {
@@ -40,7 +41,7 @@ class MissionPanel extends FlxTypedGroup<FlxBasic>
 				}
 			}
 
-			var mission = new MissionBanner(x - 280, y + 90 * (i % 4), i, missionState);
+			var mission = new MissionBanner(x, y + 90 * (i % 4), i, missionState);
 			if (highscore > 0)
 			{
 				mission.setClear(Formulas.calculateMissionRank(highscore, GameData.MISSION_DATA[i].sRankReq), highscore);
@@ -52,7 +53,7 @@ class MissionPanel extends FlxTypedGroup<FlxBasic>
 		add(missions);
 		renderPage();
 
-		prevArrow = new ArrowButton(x - 260, y + 360, () ->
+		prevArrow = new ArrowButton(x + 20, y + 360, () ->
 		{
 			if (currentPage > 0)
 			{
@@ -64,7 +65,7 @@ class MissionPanel extends FlxTypedGroup<FlxBasic>
 		prevArrow.flipX = true;
 		add(prevArrow);
 
-		nextArrow = new ArrowButton(x - 80, y + 360, () ->
+		nextArrow = new ArrowButton(x + 200, y + 360, () ->
 		{
 			if (currentPage < missions.length / 4 - 1)
 			{

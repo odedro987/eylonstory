@@ -2,8 +2,8 @@ package states;
 
 import flixel.FlxG;
 import flixel.FlxState;
-import ui.ArrowButton;
 import ui.RankMedal;
+import ui.SpriteButton.ArrowButton;
 
 class GameOverState extends FlxState
 {

@@ -1,4 +1,4 @@
-package ui;
+package ui.components;
 
 import core.Globals;
 import flixel.FlxSprite;

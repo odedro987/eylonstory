@@ -3,6 +3,7 @@ package ui;
 import flixel.FlxBasic;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup.FlxTypedGroup;
+import ui.util.SpriteButton;
 
 class Pagination<T:FlxBasic> extends FlxTypedGroup<FlxSprite>
 {

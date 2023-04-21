@@ -1,4 +1,4 @@
-package ui;
+package ui.components;
 
 import core.Globals;
 import flixel.FlxG;
@@ -6,7 +6,7 @@ import flixel.FlxSprite;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxBitmapText;
 import states.MissionState;
-import ui.RankMedal.MissionRank;
+import ui.components.RankMedal.MissionRank;
 
 enum abstract MissionBannerState(Int)
 {

@@ -12,8 +12,8 @@ import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.text.FlxBitmapText;
 import ui.DamageManager;
-import ui.ExpBar;
-import ui.Indicator;
+import ui.components.ExpBar;
+import ui.components.Indicator;
 
 class MissionState extends FlxState
 {

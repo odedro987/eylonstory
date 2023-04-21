@@ -5,6 +5,8 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import states.MenuState;
+import ui.components.BowSlot;
+import ui.util.SpriteButton;
 
 class Shop extends FlxTypedGroup<FlxBasic>
 {

@@ -2,7 +2,7 @@ package core;
 
 import entities.Player.PlayerInfo;
 import flixel.FlxG;
-import ui.RankMedal.MissionRank;
+import ui.components.RankMedal.MissionRank;
 
 class Formulas
 {

@@ -5,8 +5,8 @@ import core.GameStorage;
 import core.Globals;
 import flixel.FlxG;
 import flixel.FlxState;
-import ui.RankMedal;
-import ui.SpriteButton;
+import ui.components.RankMedal;
+import ui.util.SpriteButton;
 
 class GameOverState extends FlxState
 {

@@ -1,5 +1,8 @@
 package states;
 
+import core.Formulas;
+import core.GameStorage;
+import core.Globals;
 import flixel.FlxG;
 import flixel.FlxState;
 import ui.RankMedal;

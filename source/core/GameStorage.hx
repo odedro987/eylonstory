@@ -1,28 +1,6 @@
+package core;
+
 import flixel.util.FlxSave;
-
-typedef MissionRecord =
-{
-	var highscore:Int;
-	var attempts:Int;
-}
-
-typedef BowRecord =
-{
-	var bowIndex:Int;
-	var scrollSlots:Int;
-	var bonusWatk:Int;
-}
-
-typedef Store =
-{
-	var playerLevel:Int;
-	var playerExp:Int;
-	var playerMesos:Int;
-	var playerGP:Int;
-	var playerCurrentBow:Int;
-	var ownedBows:Array<BowRecord>;
-	var missionRecords:Array<MissionRecord>;
-}
 
 class GameStorage
 {
@@ -86,4 +64,28 @@ class GameStorage
 		hasLoaded = true;
 		return true;
 	}
+}
+
+typedef Store =
+{
+	var playerLevel:Int;
+	var playerExp:Int;
+	var playerMesos:Int;
+	var playerGP:Int;
+	var playerCurrentBow:Int;
+	var ownedBows:Array<BowRecord>;
+	var missionRecords:Array<MissionRecord>;
+}
+
+typedef MissionRecord =
+{
+	var highscore:Int;
+	var attempts:Int;
+}
+
+typedef BowRecord =
+{
+	var bowIndex:Int;
+	var scrollSlots:Int;
+	var bonusWatk:Int;
 }

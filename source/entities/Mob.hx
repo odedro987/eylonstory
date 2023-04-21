@@ -1,6 +1,7 @@
 package entities;
 
 import GameData.MobData;
+import core.Globals;
 import flixel.FlxSprite;
 
 class Mob extends FlxSprite

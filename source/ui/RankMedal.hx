@@ -1,7 +1,18 @@
 package ui;
 
-import GameData.MissionRank;
 import flixel.FlxSprite;
+
+enum abstract MissionRank(Int)
+{
+	var E;
+	var D;
+	var C;
+	var B;
+	var A;
+	var AA;
+	var AAA;
+	var S;
+}
 
 class RankMedal extends FlxSprite
 {

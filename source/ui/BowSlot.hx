@@ -1,5 +1,6 @@
 package ui;
 
+import core.Globals;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxBitmapText;

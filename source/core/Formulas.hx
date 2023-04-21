@@ -1,6 +1,8 @@
-import GameData.MissionRank;
+package core;
+
 import entities.Player.PlayerInfo;
 import flixel.FlxG;
+import ui.RankMedal.MissionRank;
 
 class Formulas
 {

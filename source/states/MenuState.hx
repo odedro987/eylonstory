@@ -1,6 +1,8 @@
 package states;
 
-import GameStorage.MissionRecord;
+import core.GameStorage;
+import core.Globals;
+import core.SoundManager;
 import flixel.FlxG;
 import flixel.FlxState;
 import ui.MissionPanel;

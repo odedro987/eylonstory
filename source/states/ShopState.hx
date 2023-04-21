@@ -1,5 +1,6 @@
 package states;
 
+import core.SoundManager;
 import flixel.FlxG;
 import flixel.FlxState;
 import ui.Shop;

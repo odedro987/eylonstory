@@ -1,3 +1,5 @@
+package core;
+
 import flixel.graphics.frames.FlxBitmapFont;
 import flixel.text.FlxBitmapText;
 import flixel.text.FlxText.FlxTextBorderStyle;

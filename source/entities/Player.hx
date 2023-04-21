@@ -1,5 +1,8 @@
 package entities;
 
+import core.Formulas;
+import core.GameStorage;
+import core.Globals;
 import flixel.FlxBasic;
 import flixel.FlxG;
 import flixel.FlxSprite;

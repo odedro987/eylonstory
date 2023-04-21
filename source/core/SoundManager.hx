@@ -1,3 +1,5 @@
+package core;
+
 import flixel.FlxG;
 
 class SoundManager

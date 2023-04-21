@@ -233,7 +233,6 @@ class GameData
 			weaponAttack: 320,
 			sprite: "assets/images/bows/genesis_bow.png"
 		},
-		
 	];
 
 	public static var MOB_DATA:Map<String, MobData> = [

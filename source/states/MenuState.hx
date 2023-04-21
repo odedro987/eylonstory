@@ -15,7 +15,7 @@ class MenuState extends FlxState
 		super.create();
 		FlxG.mouse.load(AssetPaths.cursor__png);
 
-		FlxG.sound.playMusic(AssetPaths.login_screen__ogg, 1, true);
+		SoundManager.playOrContinue(AssetPaths.login_screen__ogg);
 
 		if (!GameStorage.hasLoaded)
 		{

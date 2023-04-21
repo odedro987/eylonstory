@@ -3,9 +3,7 @@ package states;
 import GameStorage.MissionRecord;
 import flixel.FlxG;
 import flixel.FlxState;
-import flixel.system.FlxSound;
 import ui.MissionPanel;
-import ui.Shop;
 import ui.SpriteButton;
 
 class MenuState extends FlxState

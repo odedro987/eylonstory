@@ -46,7 +46,7 @@ class GameStorage
 			|| gameSave.data.playerCurrentBow == null
 			|| gameSave.data.ownedBows == null)
 		{
-			trace("save data corrupted, resetting");
+			trace("save data corrupted, resetting save file");
 			gameSave.erase();
 			return false;
 		}
@@ -87,5 +87,6 @@ typedef BowRecord =
 {
 	var bowIndex:Int;
 	var scrollSlots:Int;
+	var successfulScrollCount:Int;
 	var bonusWatk:Int;
 }

@@ -33,10 +33,17 @@ class MenuState extends FlxState
 				GameStorage.initStore({
 					playerLevel: 1,
 					playerExp: 0,
-					playerMesos: 0,
+					playerMesos: 10000,
 					playerGP: 0,
 					playerCurrentBow: 0,
-					ownedBows: [{bowIndex: 0, bonusWatk: 0, scrollSlots: 7}],
+					ownedBows: [
+						{
+							bowIndex: 0,
+							bonusWatk: 0,
+							scrollSlots: 7,
+							successfulScrollCount: 0
+						}
+					],
 					missionRecords: emptyRecord
 				});
 			}

@@ -4,27 +4,27 @@ import flixel.FlxG;
 
 class Formulas
 {
-	public static function calculateExpGoal(level:Int)
+	public static inline function calculateExpGoal(level:Int)
 	{
 		return Math.floor((level * (level + 1) * (level + 2)) / 2);
 	}
 
-	public static function calculateAccuracy(arrowsHit:Int, arrowsMissed:Int)
+	public static inline function calculateAccuracy(arrowsHit:Int, arrowsMissed:Int)
 	{
 		return Math.round((arrowsHit / (arrowsMissed + arrowsHit)) * 100 * 100) / 100;
 	}
 
-	public static function calculateRepel(repelValue:Float)
+	public static inline function calculateRepel(repelValue:Float)
 	{
 		return Math.min(Math.max(Math.round(repelValue * 100 * 100) / 100, 0), 100);
 	}
 
-	public static function calculatePointsMultiplier(mobX:Float, airTime:Float)
+	public static inline function calculatePointsMultiplier(mobX:Float, airTime:Float)
 	{
 		return (mobX + 300) / (300 - Math.min(airTime, 80));
 	}
 
-	public static function calculateDamageScore(pointsMultiplier:Float, damage:Float)
+	public static inline function calculateDamageScore(pointsMultiplier:Float, damage:Float)
 	{
 		return Math.round((10 * pointsMultiplier) * damage);
 	}
@@ -47,7 +47,7 @@ class Formulas
 		};
 	}
 
-	public static function calculateTotalPoints(score:Float, repel:Float, accuracy:Float)
+	public static inline function calculateTotalPoints(score:Float, repel:Float, accuracy:Float)
 	{
 		return Math.round(((score * accuracy) * repel) * 0.001);
 	}
@@ -90,12 +90,12 @@ class Formulas
 		}
 	}
 
-	public static function calculateMissionMesos(score:Float, repel:Float, accuracy:Float)
+	public static inline function calculateMissionMesos(score:Float, repel:Float, accuracy:Float)
 	{
 		return Math.round(((Math.pow(score, 0.72) * repel) * accuracy) * 6E-5);
 	}
 
-	public static function calculateMissionBonusExp(totalPoints:Float, missionRank:MissionRank, playerLevel:Float)
+	public static inline function calculateMissionBonusExp(totalPoints:Float, missionRank:MissionRank, playerLevel:Float)
 	{
 		if (missionRank == MissionRank.E)
 			return 0;

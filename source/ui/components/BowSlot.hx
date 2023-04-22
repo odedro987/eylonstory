@@ -36,6 +36,7 @@ class BowSlot extends FlxTypedGroup<FlxSprite>
 
 		button = new FlxTypedButton(x, y, () ->
 		{
+			setSelected(true);
 			onClick(id);
 		});
 		button.setSize(slotSprite.frameWidth, slotSprite.frameHeight);

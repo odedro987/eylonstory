@@ -12,6 +12,8 @@ class Pagination<T:FlxBasic> extends FlxTypedGroup<FlxSprite>
 	var currentPage:Float;
 	var lastPage:Float;
 
+	public var renderPage:Void->Void;
+
 	public function new(x:Float, y:Float, list:FlxTypedGroup<T>, itemsPerPage:Int, gap:Float = 180)
 	{
 		super(2);
@@ -19,7 +21,7 @@ class Pagination<T:FlxBasic> extends FlxTypedGroup<FlxSprite>
 		currentPage = 0;
 		lastPage = 0;
 
-		function renderPage()
+		renderPage = () ->
 		{
 			for (i in 0...itemsPerPage)
 			{
@@ -28,7 +30,7 @@ class Pagination<T:FlxBasic> extends FlxTypedGroup<FlxSprite>
 			}
 		}
 
-		prevArrow = new SpriteButton(x, y + 360, AssetPaths.arrow_button__png, 46, 36, () ->
+		prevArrow = new SpriteButton(x, y, AssetPaths.arrow_button__png, 46, 36, () ->
 		{
 			if (currentPage > 0)
 			{
@@ -40,7 +42,7 @@ class Pagination<T:FlxBasic> extends FlxTypedGroup<FlxSprite>
 		prevArrow.flipX = true;
 		add(prevArrow);
 
-		nextArrow = new SpriteButton(x + gap, y + 360, AssetPaths.arrow_button__png, 46, 36, () ->
+		nextArrow = new SpriteButton(x + gap, y, AssetPaths.arrow_button__png, 46, 36, () ->
 		{
 			if (currentPage < list.length / itemsPerPage - 1)
 			{

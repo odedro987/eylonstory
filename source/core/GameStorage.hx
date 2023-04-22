@@ -28,6 +28,8 @@ class GameStorage
 		gameSave.data.playerMesos = store.playerMesos;
 		gameSave.data.playerGP = store.playerGP;
 		gameSave.data.missionRecords = store.missionRecords;
+		gameSave.data.playerCurrentBow = store.playerCurrentBow;
+		gameSave.data.ownedBows = store.ownedBows;
 		gameSave.flush();
 	}
 

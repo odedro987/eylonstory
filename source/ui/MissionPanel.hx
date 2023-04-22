@@ -46,6 +46,6 @@ class MissionPanel extends FlxTypedGroup<FlxBasic>
 		}
 		add(missions);
 
-		add(new Pagination(x + 20, y, missions, 4));
+		add(new Pagination(x + 20, y + 360, missions, 4));
 	}
 }

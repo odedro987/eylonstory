@@ -4,8 +4,6 @@
 
 ### Added
 
-- untradable text to bows
-
 ### Changed
 
 ### Fixed
@@ -13,6 +11,20 @@
 ### Removed
 
 # Releases
+
+## 0.2.2 (April 23th, 2023)
+
+### Added
+
+- untradable text to bows
+
+### Changed
+
+- shop doesn't show untradable bows
+
+### Fixed
+
+- selling of untradable bows
 
 ## 0.2.1 (April 23th, 2023)
 

@@ -62,23 +62,28 @@ class Shop extends FlxTypedGroup<FlxBasic>
 		add(mesosText);
 
 		shopItems = new FlxTypedGroup();
-		for (i in 0...GameData.BOW_DATA.length)
+		var idx = 0;
+		for (bowIndex in 0...GameData.BOW_DATA.length)
 		{
-			var bow = new ShopSlot(x + 5, y + 126 + 40 * (i % itemsPerPage), i, {
-				bowIndex: i,
-				scrollSlots: 7,
-				successfulScrollCount: 0,
-				bonusWatk: 0
-			}, 1, id ->
+			if (!GameData.BOW_DATA[bowIndex].untradable)
 			{
-				if (selectedShopSlot == id)
-					return;
-				shopItems.members[id].setSelected(true);
-				resetSelection();
-				selectedShopSlot = id;
-			});
-			bow.exists = false;
-			shopItems.add(bow);
+				var bow = new ShopSlot(x + 5, y + 126 + 40 * (idx % itemsPerPage), idx, {
+					bowIndex: bowIndex,
+					scrollSlots: 7,
+					successfulScrollCount: 0,
+					bonusWatk: 0
+				}, 1, id ->
+				{
+					if (selectedShopSlot == id)
+						return;
+					shopItems.members[id].setSelected(true);
+					resetSelection();
+					selectedShopSlot = id;
+				});
+				bow.exists = false;
+				shopItems.add(bow);
+				idx++;
+			}
 		}
 		add(shopItems);
 
@@ -86,24 +91,29 @@ class Shop extends FlxTypedGroup<FlxBasic>
 		add(shopPagination);
 
 		inventoryItems = new FlxTypedGroup();
+		idx = 0;
 		for (i in 0...GameStorage.store.ownedBows.length)
 		{
 			var bowData = GameStorage.store.ownedBows[i];
-			var bow = new ShopSlot(x + 235, y + 126 + 40 * (i % itemsPerPage), i, {
-				bowIndex: bowData.bowIndex,
-				scrollSlots: bowData.scrollSlots,
-				successfulScrollCount: bowData.successfulScrollCount,
-				bonusWatk: bowData.bonusWatk
-			}, 0.5, id ->
+			if (!GameData.BOW_DATA[bowData.bowIndex].untradable)
 			{
-				if (selectedInventorySlot == id)
-					return;
-				inventoryItems.members[id].setSelected(true);
-				resetSelection();
-				selectedInventorySlot = id;
-			});
-			bow.exists = false;
-			inventoryItems.add(bow);
+				var bow = new ShopSlot(x + 235, y + 126 + 40 * (idx % itemsPerPage), idx, {
+					bowIndex: bowData.bowIndex,
+					scrollSlots: bowData.scrollSlots,
+					successfulScrollCount: bowData.successfulScrollCount,
+					bonusWatk: bowData.bonusWatk
+				}, 0.5, id ->
+				{
+					if (selectedInventorySlot == id)
+						return;
+					inventoryItems.members[id].setSelected(true);
+					resetSelection();
+					selectedInventorySlot = id;
+				});
+				bow.exists = false;
+				inventoryItems.add(bow);
+				idx++;
+			}
 		}
 		add(inventoryItems);
 
@@ -115,38 +125,44 @@ class Shop extends FlxTypedGroup<FlxBasic>
 	{
 		inventoryItems.forEach(slot -> slot.destroy());
 		inventoryItems.clear();
+		var idx = 0;
 		for (i in 0...GameStorage.store.ownedBows.length)
 		{
 			var bowData = GameStorage.store.ownedBows[i];
-			var bow = new ShopSlot(x + 235, y + 126 + 40 * (i % itemsPerPage), i, {
-				bowIndex: bowData.bowIndex,
-				scrollSlots: bowData.scrollSlots,
-				successfulScrollCount: bowData.successfulScrollCount,
-				bonusWatk: bowData.bonusWatk
-			}, 0.5, id ->
+			if (!GameData.BOW_DATA[bowData.bowIndex].untradable)
 			{
-				if (selectedInventorySlot == id)
-					return;
-				inventoryItems.members[id].setSelected(true);
-				resetSelection();
-				selectedInventorySlot = id;
-			});
-			bow.exists = false;
-			inventoryItems.add(bow);
+				var bow = new ShopSlot(x + 235, y + 126 + 40 * (idx % itemsPerPage), idx, {
+					bowIndex: bowData.bowIndex,
+					scrollSlots: bowData.scrollSlots,
+					successfulScrollCount: bowData.successfulScrollCount,
+					bonusWatk: bowData.bonusWatk
+				}, 0.5, id ->
+				{
+					if (selectedInventorySlot == id)
+						return;
+					inventoryItems.members[id].setSelected(true);
+					resetSelection();
+					selectedInventorySlot = id;
+				});
+				bow.exists = false;
+				inventoryItems.add(bow);
+				idx++;
+			}
 		}
 		inventoryPagination.renderPage();
 
-		if (inventoryPagination.currentPage * itemsPerPage >= GameStorage.store.ownedBows.length)
+		if (inventoryPagination.currentPage * itemsPerPage >= inventoryItems.length)
 			inventoryPagination.renderPrevPage();
 	}
 
 	function buyItem()
 	{
-		if (GameStorage.store.playerMesos >= GameData.BOW_DATA[selectedShopSlot].mesosCost)
+		var bowIndex = shopItems.members[selectedShopSlot].bowIndex;
+		if (GameStorage.store.playerMesos >= GameData.BOW_DATA[bowIndex].mesosCost)
 		{
-			GameStorage.store.playerMesos -= GameData.BOW_DATA[selectedShopSlot].mesosCost;
+			GameStorage.store.playerMesos -= GameData.BOW_DATA[bowIndex].mesosCost;
 			GameStorage.store.ownedBows.push({
-				bowIndex: shopItems.members[selectedShopSlot].bowIndex,
+				bowIndex: bowIndex,
 				scrollSlots: 7,
 				bonusWatk: 0,
 				successfulScrollCount: 0

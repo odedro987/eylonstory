@@ -6,6 +6,9 @@ import flixel.text.FlxText.FlxTextBorderStyle;
 
 class Globals
 {
+	// Metadata
+	public static inline var GAME_VERSION = "0.1.0";
+
 	// Mob vars
 	public static inline var FLICH_TIME = 0.5;
 

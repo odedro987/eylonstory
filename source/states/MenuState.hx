@@ -52,6 +52,7 @@ class MenuState extends FlxState
 			}
 		}
 
+		add(Globals.createBitmapText(120, FlxG.height - 20, "Ver. " + Globals.GAME_VERSION, 2, false));
 		add(Globals.createBitmapText(120, 20, "GP: " + GameStorage.store.playerGP, 2, false));
 		add(Globals.createBitmapText(120, 40, "Mesos: " + GameStorage.store.playerMesos, 2, false));
 		add(new MissionPanel(FlxG.width - 280, 10));

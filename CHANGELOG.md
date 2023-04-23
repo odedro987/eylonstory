@@ -4,6 +4,18 @@
 
 ### Added
 
+### Changed
+
+### Fixed
+
+### Removed
+
+# Releases
+
+## 0.2.0 (April 23th, 2023)
+
+### Added
+
 - total points to persistent storage
 - inventory to menu state
 - equiped cursor to inventory
@@ -12,12 +24,6 @@
 
 - bow tooltip to show points requirement in red if not enough total points
 - damage formula takes weapon attack into account
-
-### Fixed
-
-### Removed
-
-# Releases
 
 ## 0.1.1 (April 23th, 2023)
 

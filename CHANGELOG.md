@@ -12,6 +12,12 @@
 
 # Releases
 
+## 0.2.1 (April 23th, 2023)
+
+### Fixed
+
+- mobs not giving exp on death
+
 ## 0.2.0 (April 23th, 2023)
 
 ### Added

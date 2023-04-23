@@ -54,7 +54,7 @@ class Mob extends FlxSprite
 			isHit = true;
 		}
 
-		return health < 0;
+		return health <= 0;
 	}
 
 	override function update(elapsed:Float)

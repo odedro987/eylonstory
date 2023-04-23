@@ -4,6 +4,8 @@
 
 ### Added
 
+- untradable text to bows
+
 ### Changed
 
 ### Fixed

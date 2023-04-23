@@ -27,6 +27,7 @@ typedef BowData =
 	var mesosCost:Int;
 	var pointsReq:Int;
 	var sprite:String;
+	var untradable:Bool;
 }
 
 class GameData
@@ -37,196 +38,224 @@ class GameData
 			pointsReq: 0,
 			mesosCost: 0,
 			weaponAttack: 25,
-			sprite: "assets/images/bows/war_bow.png"
+			sprite: "assets/images/bows/war_bow.png",
+			untradable: true,
 		},
 		{
 			name: "Admin Bow",
 			pointsReq: 0,
 			mesosCost: 0,
 			weaponAttack: 2555,
-			sprite: "assets/images/bows/war_bow.png"
+			sprite: "assets/images/bows/war_bow.png",
+			untradable: true,
 		},
 		{
 			name: "Composite Bow",
 			pointsReq: 280000,
 			mesosCost: 1800,
 			weaponAttack: 30,
-			sprite: "assets/images/bows/composite_bow.png"
+			sprite: "assets/images/bows/composite_bow.png",
+			untradable: false,
 		},
 		{
 			name: "Archer's Bow",
 			pointsReq: 750000,
 			mesosCost: 5600,
 			weaponAttack: 35,
-			sprite: "assets/images/bows/archers_bow.png"
+			sprite: "assets/images/bows/archers_bow.png",
+			untradable: false,
 		},
 		{
 			name: "Battle Bow",
 			pointsReq: 1400000,
 			mesosCost: 8000,
 			weaponAttack: 40,
-			sprite: "assets/images/bows/battle_bow.png"
+			sprite: "assets/images/bows/battle_bow.png",
+			untradable: false,
 		},
 		{
 			name: "Ryden",
 			pointsReq: 1400000,
 			mesosCost: 8000,
 			weaponAttack: 45,
-			sprite: "assets/images/bows/ryden.png"
+			sprite: "assets/images/bows/ryden.png",
+			untradable: false,
 		},
 		{
 			name: "Red Viper",
 			pointsReq: 2000000,
 			mesosCost: 12600,
 			weaponAttack: 50,
-			sprite: "assets/images/bows/red_viper.png"
+			sprite: "assets/images/bows/red_viper.png",
+			untradable: false,
 		},
 		{
 			name: "Maple Bow",
 			pointsReq: 2200000,
 			mesosCost: 15000,
 			weaponAttack: 52,
-			sprite: "assets/images/bows/maple_bow.png"
+			sprite: "assets/images/bows/maple_bow.png",
+			untradable: false,
 		},
 		{
 			name: "Vaulter 2000",
 			pointsReq: 3000000,
 			mesosCost: 17000,
 			weaponAttack: 55,
-			sprite: "assets/images/bows/vaulter_2000.png"
+			sprite: "assets/images/bows/vaulter_2000.png",
+			untradable: false,
 		},
 		{
 			name: "Maple Soul Searcher",
 			pointsReq: 3000000,
 			mesosCost: 17000,
 			weaponAttack: 58,
-			sprite: "assets/images/bows/maple_soul_searcher.png"
+			sprite: "assets/images/bows/maple_soul_searcher.png",
+			untradable: false,
 		},
 		{
 			name: "Olympus",
 			pointsReq: 4500000,
 			mesosCost: 22500,
 			weaponAttack: 65,
-			sprite: "assets/images/bows/olympus.png"
+			sprite: "assets/images/bows/olympus.png",
+			untradable: false,
 		},
 		{
 			name: "Asianic Bow",
 			pointsReq: 5000000,
 			mesosCost: 22500,
 			weaponAttack: 75,
-			sprite: "assets/images/bows/asianic_bow.png"
+			sprite: "assets/images/bows/asianic_bow.png",
+			untradable: false,
 		},
 		{
 			name: "Maple Kandiva Bow",
 			pointsReq: 6500000,
 			mesosCost: 26000,
 			weaponAttack: 78,
-			sprite: "assets/images/bows/maple_kandiva_bow.png"
+			sprite: "assets/images/bows/maple_kandiva_bow.png",
+			untradable: false,
 		},
 		{
 			name: "Red Hinkel",
 			pointsReq: 8500000,
 			mesosCost: 32000,
 			weaponAttack: 80,
-			sprite: "assets/images/bows/red_hinkel.png"
+			sprite: "assets/images/bows/red_hinkel.png",
+			untradable: false,
 		},
 		{
 			name: "Golden Arund",
 			pointsReq: 10000000,
 			mesosCost: 38500,
 			weaponAttack: 85,
-			sprite: "assets/images/bows/golden_arund.png"
+			sprite: "assets/images/bows/golden_arund.png",
+			untradable: false,
 		},
 		{
 			name: "Legendary Maple Stormsinger",
 			pointsReq: 12000000,
 			mesosCost: 40000,
 			weaponAttack: 87,
-			sprite: "assets/images/bows/legendary_maple_stormsinger.png"
+			sprite: "assets/images/bows/legendary_maple_stormsinger.png",
+			untradable: false,
 		},
 		{
 			name: "Metus",
 			pointsReq: 15000000,
 			mesosCost: 45000,
 			weaponAttack: 90,
-			sprite: "assets/images/bows/metus.png"
+			sprite: "assets/images/bows/metus.png",
+			untradable: false,
 		},
 		{
 			name: "White Nisrock",
 			pointsReq: 20000000,
 			mesosCost: 52500,
 			weaponAttack: 95,
-			sprite: "assets/images/bows/white_nisrock.png"
+			sprite: "assets/images/bows/white_nisrock.png",
+			untradable: false,
 		},
 		{
 			name: "Dragon Shiner Bow",
 			pointsReq: 30000000,
 			mesosCost: 60000,
 			weaponAttack: 100,
-			sprite: "assets/images/bows/dragon_shiner_bow.png"
+			sprite: "assets/images/bows/dragon_shiner_bow.png",
+			untradable: false,
 		},
 		{
 			name: "Timeless Engaw",
 			pointsReq: 50000000,
 			mesosCost: 70000,
 			weaponAttack: 107,
-			sprite: "assets/images/bows/timeless_engaw.png"
+			sprite: "assets/images/bows/timeless_engaw.png",
+			untradable: false,
 		},
 		{
 			name: "Maple Treasure Longbow",
 			pointsReq: 60000000,
 			mesosCost: 90000,
 			weaponAttack: 123,
-			sprite: "assets/images/bows/maple_treasure_longbow.png"
+			sprite: "assets/images/bows/maple_treasure_longbow.png",
+			untradable: false,
 		},
 		{
 			name: "VIP Bow",
 			pointsReq: 100000000,
 			mesosCost: 120000,
 			weaponAttack: 135,
-			sprite: "assets/images/bows/vip_bow.png"
+			sprite: "assets/images/bows/vip_bow.png",
+			untradable: false,
 		},
 		{
 			name: "Royal Von Leon Bow",
 			pointsReq: 120000000,
 			mesosCost: 140000,
 			weaponAttack: 145,
-			sprite: "assets/images/bows/royal_von_leon_bow.png"
+			sprite: "assets/images/bows/royal_von_leon_bow.png",
+			untradable: false,
 		},
 		{
 			name: "Meister Battle Bow",
 			pointsReq: 140000000,
 			mesosCost: 180000,
 			weaponAttack: 158,
-			sprite: "assets/images/bows/meister_battle_bow.png"
+			sprite: "assets/images/bows/meister_battle_bow.png",
+			untradable: false,
 		},
 		{
 			name: "Lightseeker",
 			pointsReq: 150000000,
 			mesosCost: 250000,
 			weaponAttack: 190,
-			sprite: "assets/images/bows/lightseeker.png"
+			sprite: "assets/images/bows/lightseeker.png",
+			untradable: false,
 		},
 		{
 			name: "Terminus Stormchaser",
 			pointsReq: 200000000,
 			mesosCost: 350000,
 			weaponAttack: 205,
-			sprite: "assets/images/bows/terminus_stormchaser.png"
+			sprite: "assets/images/bows/terminus_stormchaser.png",
+			untradable: false,
 		},
 		{
 			name: "Arcane Umbra Bow",
 			pointsReq: 300000000,
 			mesosCost: 850000,
 			weaponAttack: 260,
-			sprite: "assets/images/bows/arcane_umbra_bow.png"
+			sprite: "assets/images/bows/arcane_umbra_bow.png",
+			untradable: false,
 		},
 		{
 			name: "Genesis Bow",
 			pointsReq: 500000000,
 			mesosCost: 1500000,
 			weaponAttack: 320,
-			sprite: "assets/images/bows/genesis_bow.png"
+			sprite: "assets/images/bows/genesis_bow.png",
+			untradable: false,
 		},
 	];
 

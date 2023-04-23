@@ -5,6 +5,7 @@
 ### Added
 
 - total points to persistent storage
+- inventory to menu state
 
 ### Changed
 

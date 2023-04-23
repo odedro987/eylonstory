@@ -6,6 +6,7 @@
 
 - total points to persistent storage
 - inventory to menu state
+- equiped cursor to inventory
 
 ### Changed
 

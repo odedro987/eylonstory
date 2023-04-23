@@ -19,6 +19,7 @@
 - Menu state
   - Mission selection panel
   - Shop button
+  - Persistent storage
 - Shop state
   - Buy bows
   - Sell bows

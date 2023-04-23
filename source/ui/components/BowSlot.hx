@@ -32,7 +32,7 @@ class BowSlot extends FlxTypedGroup<FlxSprite>
 		this.bowIndex = bowIndex;
 
 		slotSprite = new FlxSprite(x, y);
-		slotSprite.loadGraphic(AssetPaths.item_slot__png, true, 199, 35);
+		slotSprite.loadGraphic(AssetPaths.shop_slot__png, true, 199, 35);
 
 		button = new FlxTypedButton(x, y, () ->
 		{

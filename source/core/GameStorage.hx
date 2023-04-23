@@ -30,6 +30,12 @@ class GameStorage
 		gameSave.data.missionRecords = store.missionRecords;
 		gameSave.data.playerCurrentBow = store.playerCurrentBow;
 		gameSave.data.ownedBows = store.ownedBows;
+		var totalPoints = 0;
+		for (rec in store.missionRecords)
+		{
+			totalPoints += rec.highscore;
+		}
+		gameSave.data.totalPoints = totalPoints;
 		gameSave.flush();
 	}
 
@@ -44,8 +50,9 @@ class GameStorage
 			|| gameSave.data.playerExp == null
 			|| gameSave.data.playerMesos == null
 			|| gameSave.data.playerGP == null
-			|| gameSave.data.missionRecords == null
 			|| gameSave.data.playerCurrentBow == null
+			|| gameSave.data.totalPoints == null
+			|| gameSave.data.missionRecords == null
 			|| gameSave.data.ownedBows == null)
 		{
 			trace("save data corrupted, resetting save file");
@@ -59,6 +66,7 @@ class GameStorage
 			playerMesos: gameSave.data.playerMesos,
 			playerGP: gameSave.data.playerGP,
 			playerCurrentBow: gameSave.data.playerCurrentBow,
+			totalPoints: gameSave.data.totalPoints,
 			ownedBows: gameSave.data.ownedBows,
 			missionRecords: gameSave.data.missionRecords,
 		}
@@ -75,6 +83,7 @@ typedef Store =
 	var playerMesos:Int;
 	var playerGP:Int;
 	var playerCurrentBow:Int;
+	var totalPoints:Int;
 	var ownedBows:Array<BowRecord>;
 	var missionRecords:Array<MissionRecord>;
 }

@@ -39,6 +39,7 @@ class MenuState extends FlxState
 					playerMesos: 10000,
 					playerGP: 0,
 					playerCurrentBow: 0,
+					totalPoints: 0,
 					ownedBows: [
 						{
 							bowIndex: 0,
@@ -54,7 +55,7 @@ class MenuState extends FlxState
 
 		add(Globals.createBitmapText(120, FlxG.height - 20, "Ver. " + Globals.GAME_VERSION, 2, false));
 		add(Globals.createBitmapText(120, 20, "GP: " + GameStorage.store.playerGP, 2, false));
-		add(Globals.createBitmapText(120, 40, "Mesos: " + GameStorage.store.playerMesos, 2, false));
+		add(Globals.createBitmapText(120, 40, "Total Points: " + GameStorage.store.totalPoints, 2, false));
 		add(new MissionPanel(FlxG.width - 280, 10));
 
 		add(new SpriteButton(FlxG.width / 2, 20, AssetPaths.shop_button__png, 54, 34, () -> FlxG.switchState(new ShopState())));

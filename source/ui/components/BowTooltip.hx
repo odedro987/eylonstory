@@ -1,5 +1,6 @@
 package ui.components;
 
+import core.GameStorage;
 import core.Globals;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup.FlxTypedGroup;
@@ -23,7 +24,7 @@ class BowTooltip extends FlxTypedGroup<FlxSprite>
 		var bData = GameData.BOW_DATA[data.bowIndex];
 
 		bg = new FlxSprite(x, y);
-		bg.makeGraphic(240, 110, 0xc421098d);
+		bg.makeGraphic(240, 115, 0xc421098d);
 		add(bg);
 
 		var isLong = bData.name.length > 18;
@@ -43,6 +44,10 @@ class BowTooltip extends FlxTypedGroup<FlxSprite>
 		add(sprite);
 
 		pointsReqText = Globals.createBitmapText(x + 90, y + 30, "REQUIRED POINTS : " + bData.pointsReq, 1, false);
+		if (GameStorage.store.totalPoints < bData.pointsReq)
+		{
+			pointsReqText.color = 0xffbd0404;
+		}
 		add(pointsReqText);
 
 		watkText = Globals.createBitmapText(x + 90, y + 45, "WEAPON ATTACK : " + (bData.weaponAttack + data.bonusWatk), 1, false);

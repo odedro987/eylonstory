@@ -33,8 +33,10 @@ class Formulas
 
 	public static function getRandomDamage(playerInfo:PlayerInfo)
 	{
-		// TODO: change 40 to watk and 15 to arrow watk
-		var maxDmg = 20 * playerInfo.level * ((40 + 15) / 100);
+		var currBow = GameStorage.store.ownedBows[GameStorage.store.playerCurrentBow];
+		var bowAttack = GameData.BOW_DATA[currBow.bowIndex].weaponAttack + currBow.bonusWatk;
+		var arrowAttackBonus = 0;
+		var maxDmg = 20 * playerInfo.level * ((bowAttack + arrowAttackBonus) / 100);
 		var minDmg = playerInfo.mastery * maxDmg;
 		var dmg = Math.round(FlxG.random.float(minDmg, maxDmg));
 		var isCrit = FlxG.random.float() <= playerInfo.critChance;

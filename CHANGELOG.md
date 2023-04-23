@@ -11,6 +11,7 @@
 ### Changed
 
 - bow tooltip to show points requirement in red if not enough total points
+- damage formula takes weapon attack into account
 
 ### Fixed
 

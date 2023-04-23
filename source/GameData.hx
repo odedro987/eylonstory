@@ -40,6 +40,13 @@ class GameData
 			sprite: "assets/images/bows/war_bow.png"
 		},
 		{
+			name: "Admin Bow",
+			pointsReq: 0,
+			mesosCost: 0,
+			weaponAttack: 2555,
+			sprite: "assets/images/bows/war_bow.png"
+		},
+		{
 			name: "Composite Bow",
 			pointsReq: 280000,
 			mesosCost: 1800,

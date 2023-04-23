@@ -4,6 +4,7 @@ import core.GameStorage;
 import core.Globals;
 import core.SoundManager;
 import flixel.FlxG;
+import flixel.FlxSprite;
 import flixel.FlxState;
 import ui.MissionPanel;
 import ui.util.SpriteButton;
@@ -14,6 +15,8 @@ class MenuState extends FlxState
 	{
 		super.create();
 		FlxG.mouse.load(AssetPaths.cursor__png);
+
+		add(new FlxSprite(0, 0, AssetPaths.bg1__png));
 
 		SoundManager.playOrContinue(AssetPaths.login_screen__ogg);
 

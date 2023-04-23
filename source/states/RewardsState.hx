@@ -8,7 +8,7 @@ import flixel.FlxState;
 import ui.components.RankMedal;
 import ui.util.SpriteButton;
 
-class GameOverState extends FlxState
+class RewardsState extends FlxState
 {
 	var score:Float;
 	var accuracy:Float;

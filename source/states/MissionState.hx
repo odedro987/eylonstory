@@ -94,7 +94,7 @@ class MissionState extends FlxState
 	{
 		var accuracy = Formulas.calculateAccuracy(arrowsHit, arrowsMissed);
 		var repel = Formulas.calculateRepel(indicator.getRepel());
-		FlxG.switchState(new GameOverState(score, accuracy, repel, missionIndex));
+		FlxG.switchState(new RewardsState(score, accuracy, repel, missionIndex));
 	}
 
 	override public function update(elapsed:Float)

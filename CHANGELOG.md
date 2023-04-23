@@ -4,7 +4,11 @@
 
 ### Added
 
+- total points to persistent storage
+
 ### Changed
+
+- bow tooltip to show points requirement in red if not enough total points
 
 ### Fixed
 

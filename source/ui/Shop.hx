@@ -8,15 +8,15 @@ import flixel.FlxSprite;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxBitmapText;
 import states.MenuState;
-import ui.components.BowSlot;
+import ui.components.ShopSlot;
 import ui.util.SpriteButton;
 
 class Shop extends FlxTypedGroup<FlxBasic>
 {
-	var shopItems:FlxTypedGroup<BowSlot>;
-	var shopPagination:Pagination<BowSlot>;
-	var inventoryItems:FlxTypedGroup<BowSlot>;
-	var inventoryPagination:Pagination<BowSlot>;
+	var shopItems:FlxTypedGroup<ShopSlot>;
+	var shopPagination:Pagination<ShopSlot>;
+	var inventoryItems:FlxTypedGroup<ShopSlot>;
+	var inventoryPagination:Pagination<ShopSlot>;
 	var shopUI:FlxSprite;
 	var buyButton:SpriteButton;
 	var sellButton:SpriteButton;
@@ -64,7 +64,12 @@ class Shop extends FlxTypedGroup<FlxBasic>
 		shopItems = new FlxTypedGroup();
 		for (i in 0...GameData.BOW_DATA.length)
 		{
-			var bow = new BowSlot(x + 5, y + 126 + 40 * (i % itemsPerPage), i, i, 1, id ->
+			var bow = new ShopSlot(x + 5, y + 126 + 40 * (i % itemsPerPage), i, {
+				bowIndex: i,
+				scrollSlots: 7,
+				successfulScrollCount: 0,
+				bonusWatk: 0
+			}, 1, id ->
 			{
 				if (selectedShopSlot == id)
 					return;
@@ -83,8 +88,13 @@ class Shop extends FlxTypedGroup<FlxBasic>
 		inventoryItems = new FlxTypedGroup();
 		for (i in 0...GameStorage.store.ownedBows.length)
 		{
-			var bowIndex = GameStorage.store.ownedBows[i].bowIndex;
-			var bow = new BowSlot(x + 235, y + 126 + 40 * (i % itemsPerPage), i, bowIndex, 0.5, id ->
+			var bowData = GameStorage.store.ownedBows[i];
+			var bow = new ShopSlot(x + 235, y + 126 + 40 * (i % itemsPerPage), i, {
+				bowIndex: bowData.bowIndex,
+				scrollSlots: bowData.scrollSlots,
+				successfulScrollCount: bowData.successfulScrollCount,
+				bonusWatk: bowData.bonusWatk
+			}, 0.5, id ->
 			{
 				if (selectedInventorySlot == id)
 					return;
@@ -107,8 +117,13 @@ class Shop extends FlxTypedGroup<FlxBasic>
 		inventoryItems.clear();
 		for (i in 0...GameStorage.store.ownedBows.length)
 		{
-			var bowIndex = GameStorage.store.ownedBows[i].bowIndex;
-			var bow = new BowSlot(x + 235, y + 126 + 40 * (i % itemsPerPage), i, bowIndex, 0.5, id ->
+			var bowData = GameStorage.store.ownedBows[i];
+			var bow = new ShopSlot(x + 235, y + 126 + 40 * (i % itemsPerPage), i, {
+				bowIndex: bowData.bowIndex,
+				scrollSlots: bowData.scrollSlots,
+				successfulScrollCount: bowData.successfulScrollCount,
+				bonusWatk: bowData.bonusWatk
+			}, 0.5, id ->
 			{
 				if (selectedInventorySlot == id)
 					return;

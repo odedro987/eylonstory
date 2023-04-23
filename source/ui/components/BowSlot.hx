@@ -1,75 +1,48 @@
 package ui.components;
 
-import core.Globals;
 import flixel.FlxBasic;
+import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup.FlxTypedGroup;
-import flixel.math.FlxPoint;
-import flixel.text.FlxBitmapText;
-import flixel.ui.FlxButton.FlxTypedButton;
 
-class BowSlot extends FlxTypedGroup<FlxSprite>
+typedef BowSlotData =
 {
-	var button:FlxTypedButton<FlxSprite>;
-	var bowSprite:FlxSprite;
-	var slotSprite:FlxSprite;
-	var nameText:FlxBitmapText;
-	var mesosText:FlxBitmapText;
+	var bowIndex:Int;
+	var scrollSlots:Int;
+	var successfulScrollCount:Int;
+	var bonusWatk:Int;
+}
 
-	var id:Int;
-	var x:Float;
-	var y:Float;
+class BowSlot extends FlxTypedGroup<FlxBasic>
+{
+	var sprite:FlxSprite;
+	var tooltip:BowTooltip;
 
-	public var bowIndex:Int;
-
-	public function new(x:Float, y:Float, id:Int, bowIndex:Int, mesosMultiplier:Float, ?onClick:Int->Void)
+	public function new(x:Float, y:Float, data:BowSlotData)
 	{
-		super(5);
+		super();
 
-		this.x = x;
-		this.y = y;
-		this.id = id;
-		this.bowIndex = bowIndex;
+		sprite = new FlxSprite(x, y, GameData.BOW_DATA[data.bowIndex].sprite);
+		add(sprite);
 
-		slotSprite = new FlxSprite(x, y);
-		slotSprite.loadGraphic(AssetPaths.shop_slot__png, true, 199, 35);
+		tooltip = new BowTooltip(x, y, data);
+		tooltip.exists = false;
+		tooltip.camera = FlxG.cameras.list[1];
+		add(tooltip);
+	}
 
-		button = new FlxTypedButton(x, y, () ->
+	override function update(elapsed:Float)
+	{
+		super.update(elapsed);
+
+		if (FlxG.mouse.overlaps(sprite))
 		{
-			setSelected(true);
-			onClick(id);
-		});
-		button.setSize(slotSprite.frameWidth, slotSprite.frameHeight);
-		add(button);
-
-		add(slotSprite);
-
-		bowSprite = new FlxSprite(x, y, GameData.BOW_DATA[bowIndex].sprite);
-		add(bowSprite);
-
-		nameText = Globals.createBitmapText(x + 70, y + 5, GameData.BOW_DATA[bowIndex].name, 1.25, false);
-		add(nameText);
-
-		mesosText = Globals.createBitmapText(x + 85, y + 25, GameData.BOW_DATA[bowIndex].mesosCost * mesosMultiplier + " Mesos", 1.25, false);
-		add(mesosText);
-	}
-
-	public function setSelected(flag:Bool)
-	{
-		slotSprite.animation.frameIndex = flag ? 1 : 0;
-	}
-
-	public function getPosition()
-	{
-		return FlxPoint.get(x, y);
-	}
-
-	public function setPosition(x:Float, y:Float)
-	{
-		slotSprite.setPosition(x, y);
-		button.setPosition(x, y);
-		bowSprite.setPosition(x, y);
-		nameText.setPosition(x, y);
-		mesosText.setPosition(x, y);
+			tooltip.exists = true;
+			tooltip.setPosition(FlxG.mouse.x + 16, FlxG.mouse.y);
+		}
+		else
+		{
+			tooltip.exists = false;
+		}
 	}
 }

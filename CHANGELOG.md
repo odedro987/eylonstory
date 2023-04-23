@@ -12,6 +12,12 @@
 
 # Releases
 
+## 0.1.1 (April 23th, 2023)
+
+### Changed
+
+- tooltips design
+
 ## 0.1.0 (April 23th, 2023)
 
 ### Added

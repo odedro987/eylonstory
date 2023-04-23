@@ -39,8 +39,8 @@ class MissionBanner extends FlxTypedGroup<FlxSprite>
 		add(banner);
 
 		var missionName = GameData.MISSION_DATA[missionIndex].name;
-		var isLong = missionName.length <= 18;
-		name = Globals.createBitmapText(x + (isLong ? 110 : 60), y + 15, missionName, isLong ? 2 : 1.5, false);
+		var isLong = missionName.length > 18;
+		name = Globals.createBitmapText(x + (isLong ? 60 : 110), y + 15, missionName, isLong ? 1.5 : 2, false);
 		add(name);
 
 		rankMedal = new RankMedal(x + 213, y + 44, MissionRank.E);

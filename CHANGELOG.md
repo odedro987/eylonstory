@@ -12,6 +12,12 @@
 
 # Releases
 
+## 0.3.1 (April 24th, 2023)
+
+### Added
+
+- 4 more bow sprites and animations
+
 ## 0.3.0 (April 24th, 2023)
 
 ### Added

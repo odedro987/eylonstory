@@ -12,6 +12,18 @@
 
 # Releases
 
+## 0.3.0 (April 24th, 2023)
+
+### Added
+
+- bow sprites and animations to mission state
+- player animations
+
+### Changed
+
+- moved bow icons to a separate folder
+- player sprite
+
 ## 0.2.2 (April 23th, 2023)
 
 ### Added

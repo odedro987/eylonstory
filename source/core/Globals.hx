@@ -7,7 +7,7 @@ import flixel.text.FlxText.FlxTextBorderStyle;
 class Globals
 {
 	// Metadata
-	public static inline var GAME_VERSION = "0.2.2";
+	public static inline var GAME_VERSION = "0.3.0";
 
 	// Mob vars
 	public static inline var FLICH_TIME = 0.5;
@@ -15,6 +15,7 @@ class Globals
 	// Player vars
 	public static inline var MAX_FORCE = 700;
 	public static inline var MIN_FORCE = 200;
+	public static var HAND_POSITIONS = [[21, 71], [20, 71], [19, 71], [35, 55], [21, 55]];
 
 	// Font
 	public static var fontXNA:FlxBitmapFont;

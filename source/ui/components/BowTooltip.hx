@@ -50,7 +50,7 @@ class BowTooltip extends FlxTypedGroup<FlxSprite>
 		spriteBG.makeGraphic(76, 76, 0xa1ffffff);
 		add(spriteBG);
 
-		sprite = new FlxSprite(x + 8 + 19, y + yOffset + 30 + 19, bData.sprite);
+		sprite = new FlxSprite(x + 8 + 19, y + yOffset + 30 + 19, bData.icon);
 		sprite.scale.set(2, 2);
 		add(sprite);
 

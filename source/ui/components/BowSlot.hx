@@ -22,7 +22,7 @@ class BowSlot extends FlxTypedGroup<FlxBasic>
 	{
 		super();
 
-		sprite = new FlxSprite(x, y, GameData.BOW_DATA[data.bowIndex].sprite);
+		sprite = new FlxSprite(x, y, GameData.BOW_DATA[data.bowIndex].icon);
 		add(sprite);
 
 		tooltip = new BowTooltip(x, y, data);
